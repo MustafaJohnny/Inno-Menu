@@ -1,0 +1,32 @@
+.areaMsg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.breakpointMsg {
+  color: #27272a;
+  font-weight: 600;
+  font-size: 3vw;
+}
+
+@media (max-width: 37.5em) {
+  .areaMsg {
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+@media (min-width: 37.5em) {
+  .mainContainer {
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+    transform: rotate(-90deg);
+  }
+}

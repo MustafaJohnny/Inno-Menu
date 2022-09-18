@@ -1,0 +1,144 @@
+@media (max-width: 37.5em) {
+  .modal {
+    top: 50%;
+    left: 50%;
+    width: 80vw;
+    height: 105vw;
+    display: flex;
+    position: fixed;
+    overflow: hidden;
+    transition: all 0.5s;
+    align-items: center;
+    border-radius: 20px;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+    z-index: 99999999999999999999999999999999999999;
+    animation: openModall 0.5s ease-out forwards;
+    box-shadow: 0px 3px 20px rgba(101, 101, 101, 0.15);
+  }
+
+  .modal2 {
+    justify-content: space-evenly;
+  }
+
+  .modal::after {
+    content: "";
+    top: -5%;
+    right: 0%;
+    width: 110%;
+    height: 110%;
+    z-index: -1;
+    position: absolute;
+    background: radial-gradient(
+      53.08% 53.08% at 50% 50%,
+      #fd9cd083 0%,
+      rgba(255, 242, 249, 0) 100%
+    );
+    border-radius: 260.926px;
+  }
+
+  @keyframes openModall {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -100%);
+    }
+
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -20%);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .btn {
+    box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+    font-family: inherit;
+    background-color: #009de0;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 3.4vw 29vw;
+    font-weight: 600;
+    margin-top: 4vw;
+    cursor: pointer;
+    font-size: 3vw;
+    color: #fff;
+    border: none;
+  }
+
+  .btn2 {
+    box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+    font-family: inherit;
+    background-color: #009de0;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 3.8vw 27vw;
+    font-weight: 600;
+    margin-top: 0vw;
+    cursor: pointer;
+    font-size: 3.5vw;
+    color: #fff;
+    border: none;
+    transform: translateY(3vw);
+  }
+
+  .btn3 {
+    padding: 3.4vw 24vw;
+    font-size: 2.8vw;
+    transform: translateY(4vw);
+    font-size: 3.5vw;
+  }
+
+  .btn4 {
+    padding: 3.8vw 17vw;
+    font-weight: 700;
+  }
+
+  .btnCloseModal {
+    font-family: inherit;
+    position: absolute;
+    background: none;
+    color: #969ea1;
+    font-weight: 300;
+    cursor: pointer;
+    font-size: 8vw;
+    border: none;
+    top: 0.5%;
+    right: 4%;
+  }
+
+  .MessageArea {
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+  }
+
+  .theMessage {
+    text-align: center;
+    color: #27272a;
+    font-weight: 500;
+    line-height: 6vw;
+    font-size: 3.8vw;
+  }
+
+  .theMessage2 {
+    text-align: center;
+    color: #27272a;
+    font-weight: 500;
+    line-height: 6vw;
+    font-size: 4.2vw;
+  }
+
+  .waiterBell {
+    width: 60vw;
+  }
+
+  .clockImg {
+    width: 40vw;
+  }
+}

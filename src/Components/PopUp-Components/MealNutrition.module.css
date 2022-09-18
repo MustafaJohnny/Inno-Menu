@@ -1,0 +1,111 @@
+@media (max-width: 37.5em) {
+  .modal {
+    top: 50%;
+    left: 50%;
+    gap: 10vw;
+    width: 75vw;
+    height: 75vw;
+    display: flex;
+    position: fixed;
+    transition: all 1s;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-radius: 20px;
+    flex-direction: column;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+    z-index: 99999999999999999999999999999999999999;
+    animation: openModall 0.8s ease-out forwards;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  @keyframes openModall {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -100%);
+    }
+
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -20%);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .btnCloseModal {
+    font-family: inherit;
+    position: absolute;
+    background: none;
+    color: #969ea1;
+    font-weight: 300;
+    cursor: pointer;
+    font-size: 7.5vw;
+    border: none;
+    top: 2%;
+    right: 5%;
+  }
+
+  .MessageArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2.5vw;
+    margin-left: 8vw;
+    margin-top: 10vw;
+  }
+
+  .theMessage {
+    color: #27272a;
+    font-weight: 600;
+    font-size: 5vw;
+  }
+
+  .nutrition {
+    color: #27272a;
+    font-weight: 400;
+    font-size: 3.9vw;
+  }
+
+  .nutritionArea {
+    display: flex;
+    flex-direction: column;
+    gap: 4vw;
+    align-items: flex-start;
+    margin-left: 8vw;
+  }
+
+  .nutritionItem {
+    display: flex;
+    align-items: center;
+    gap: 38vw;
+  }
+
+  .nutritionProp {
+    font-size: 3.5vw;
+    font-weight: 500;
+    color: #3f3f46;
+  }
+
+  .nutritionNum {
+    font-size: 3.5vw;
+    font-weight: 600;
+    color: #52525b;
+  }
+
+  .fat {
+    transform: translateX(-0.9vw);
+  }
+
+  .carb {
+    transform: translateX(-11.5vw);
+  }
+
+  .protein {
+    transform: translateX(1.8vw);
+  }
+}
