@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./HomePage.module.css";
 import Navigation from "../UI-Components/Navigation";
 import ServiceSoonModal from "../PopUp-Components/ServiceSoonModal";
+import BasketComponent from "../UI-Components/BasketComponent";
 import LangNavigation from "../UI-Components/LangNavigation";
 import SideNavigation from "../UI-Components/SideNavigation";
 import ServiceModal from "../PopUp-Components/ServiceModal";
@@ -262,6 +263,7 @@ const HomePage = () => {
             ))}
           </div>
         )}
+        {showOrder && <BasketComponent />}
       </section>
     </React.Fragment>
   );

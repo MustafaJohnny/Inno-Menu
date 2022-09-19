@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./HomePage.module.css";
 import LangNavigation from "../UI-Components/LangNavigation";
 import SideNavigation from "../UI-Components/SideNavigation";
-import BasketComponent from "../UI-Components/BasketComponent";
+import OrderComponent from "../UI-Components/OrderComponent";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ import { controlActions } from "../Redux/ReduxStore";
 import Navigation from "../UI-Components/Navigation";
 import ArrowL from "../Icons/ArrowL.svg";
 
-const ItemsPage = () => {
+const Cart = () => {
   useEffect(() => {
     dispatch(controlActions.toggleShowLayout(false));
     window.scrollTo(0, 0);
@@ -26,22 +26,13 @@ const ItemsPage = () => {
   const navigate = useNavigate();
   const params = useParams();
   const URL = `http://${serverAPI}:8000/api/v1/client/fileimage/${params.domain}`;
-  const itemsHeading = useSelector((state) => state.controler.items_heading);
   const selectedItems = useSelector((state) => state.controler.selected_items);
   const cart_items = useSelector((state) => state.controler.cart_items);
   console.log(cart_items);
 
   const navigateStepBack = () => {
-    // Maybe it's a bad thing to do
-    dispatch(controlActions.getSelectedItems([]));
     dispatch(controlActions.toggleShowLayout(true));
     navigate(-1);
-  };
-
-  // Adding to cat handling functions
-
-  const handleAddToCart = (meal) => {
-    dispatch(controlActions.addToCart(meal));
   };
 
   return (
@@ -59,7 +50,7 @@ const ItemsPage = () => {
               className={classes.arrowIcon}
             />
           )}
-          <span className={classes.foodSecHeading}>{itemsHeading}</span>
+          <span className={classes.foodSecHeading}>ваш заказ</span>
         </div>
       </section>
       <section
@@ -99,21 +90,17 @@ const ItemsPage = () => {
                   -
                 </button>
                 <span className={classes.itemQTA}>1</span>
-                <button
-                  onClick={() => handleAddToCart(ele)}
-                  className={classes.plusBtn}
-                  type="button"
-                >
+                <button className={classes.plusBtn} type="button">
                   +
                 </button>
               </div>
             </div>
           ))}
         </div>
-        {showOrder && <BasketComponent />}
+        <OrderComponent />
       </section>
     </React.Fragment>
   );
 };
 
-export default ItemsPage;
+export default Cart;

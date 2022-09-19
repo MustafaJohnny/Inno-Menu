@@ -10,8 +10,8 @@ const OrderComponent = () => {
           <p className={classes.total}>Total:</p>
           <span className={classes.price}>0 RUB</span>
         </div>
-        <button type="btn" className={classes.orderBtn}>
-          <span className={classes.orderText}>Заказать</span>
+        <button type="button" className={classes.orderBtn}>
+          <span className={classes.orderText}>Подтвердить</span>
           <img className={classes.basketIcon} alt="icon" src={Basket} />
           <span className={classes.orderAdded}></span>
         </button>

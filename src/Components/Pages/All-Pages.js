@@ -16,12 +16,10 @@ const Items_page = React.lazy(() => import("./ItemsPage"));
 
 const Home_page = React.lazy(() => import("./HomePage"));
 
+const Cart_page = React.lazy(() => import("./Cart"));
+
 const Waiter_modal = React.lazy(() =>
   import("../PopUp-Components/WaiterModal")
-);
-
-const Order_component = React.lazy(() =>
-  import("../UI-Components/OrderComponent")
 );
 
 const All_Pages = () => {
@@ -51,8 +49,7 @@ const All_Pages = () => {
   const showWaiter = useSelector((state) => state.controler.show_waiter);
   const waiterSoon = useSelector((state) => state.controler.waiter_soon);
   const showBell = useSelector((state) => state.controler.show_bell);
-  const showOrder = useSelector((state) => state.controler.show_order_com);
-  //showOrder &&
+
   return (
     <React.Fragment>
       <div className={classes.areaMsg}>
@@ -63,7 +60,6 @@ const All_Pages = () => {
           {showWaiter && <Waiter_modal />}
           {waiterSoon && <Clock_modal />}
           {showBell && <BellComponent />}
-          {<Order_component />}
           <Routes>
             <Route
               path="/menu/:domain/:NumOfTable/:lang"
@@ -78,6 +74,11 @@ const All_Pages = () => {
             <Route
               path="/menu/:domain/:NumOfTable/:lang/items"
               element={<Items_page />}
+            />
+
+            <Route
+              path="/menu/:domain/:NumOfTable/:lang/cart"
+              element={<Cart_page />}
             />
           </Routes>
         </Suspense>

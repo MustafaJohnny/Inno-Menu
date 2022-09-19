@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./HomePage.module.css";
 import LangNavigation from "../UI-Components/LangNavigation";
 import SideNavigation from "../UI-Components/SideNavigation";
+import BasketComponent from "../UI-Components/BasketComponent";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
@@ -114,6 +115,7 @@ const CategoriesPage = () => {
             </div>
           ))}
         </div>
+        {showOrder && <BasketComponent />}
       </section>
     </React.Fragment>
   );
