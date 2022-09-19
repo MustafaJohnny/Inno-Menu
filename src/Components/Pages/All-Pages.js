@@ -52,7 +52,7 @@ const All_Pages = () => {
   const waiterSoon = useSelector((state) => state.controler.waiter_soon);
   const showBell = useSelector((state) => state.controler.show_bell);
   const showOrder = useSelector((state) => state.controler.show_order_com);
-
+  //showOrder &&
   return (
     <React.Fragment>
       <div className={classes.areaMsg}>
@@ -63,7 +63,7 @@ const All_Pages = () => {
           {showWaiter && <Waiter_modal />}
           {waiterSoon && <Clock_modal />}
           {showBell && <BellComponent />}
-          {showOrder && <Order_component />}
+          {<Order_component />}
           <Routes>
             <Route
               path="/menu/:domain/:NumOfTable/:lang"

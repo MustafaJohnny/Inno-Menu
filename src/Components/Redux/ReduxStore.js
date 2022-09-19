@@ -131,13 +131,18 @@ const controlSlice = createSlice({
     // Cart Functions //
 
     addToCart(state, action) {
+      // We get the index of the chosen meal by the user
       const mealIndex = state.cart_items.findIndex(
         (meal) => meal.id === action.payload.id
       );
 
+      // When the meal is already added we just incress the amout of it.
       if (mealIndex >= 0) {
         state.cart_items[mealIndex].cartQuantity += 1;
-      } else {
+      }
+
+      // When the chosen meal is new we just push it to the cart state with quantity of 1.
+      if (mealIndex < 0) {
         const tempMeal = { ...action.payload, cartQuantity: 1 };
         state.cart_items.push(tempMeal);
       }
