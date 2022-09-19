@@ -58,12 +58,13 @@ const SwiperComponent = () => {
           if (request.data.menu[0].categorymenu.length !== 1) {
             dispatch(controlActions.getSelectedItems([]));
             dispatch(controlActions.toggleHideItems(false));
+            dispatch(controlActions.toggleShowLayout(true));
           }
         }
       };
 
       getData();
-    }, 700);
+    }, 600);
 
     return () => {
       mounted = false;
@@ -85,7 +86,7 @@ const SwiperComponent = () => {
     if (!event.slides[event.activeIndex].className.includes("services")) {
       dispatch(controlActions.getServiceItems([]));
       dispatch(controlActions.setInitialSlide(event.activeIndex));
-      dispatch(controlActions.toggleShowLayout(true));
+      // dispatch(controlActions.toggleShowLayout(true));
       dispatch(controlActions.toggleHideItems(true));
       setActiveCarousel(event.slides[event.activeIndex].id);
     }

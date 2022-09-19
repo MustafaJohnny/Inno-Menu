@@ -1,6 +1,5 @@
 import React from "react";
 import classes from "./HomePage.module.css";
-import OrderComponent from "../UI-Components/OrderComponent";
 import LangNavigation from "../UI-Components/LangNavigation";
 import SideNavigation from "../UI-Components/SideNavigation";
 import { useEffect } from "react";
@@ -21,6 +20,7 @@ const CategoriesPage = () => {
 
   const showLangNav = useSelector((state) => state.controler.show_lang_nav);
   const showSideNav = useSelector((state) => state.controler.show_side_nav);
+  const showOrder = useSelector((state) => state.controler.show_order_com);
   const serverAPI = useSelector((state) => state.controler.serverAPI);
   ////////////////////////////////////////////////////////////////////////////////
   const layoutState = useSelector((state) => state.controler.layout_oneFR);
@@ -91,7 +91,9 @@ const CategoriesPage = () => {
           <span className={classes.foodSecHeading}>{categorieItem.name}</span>
         </div>
       </section>
-      <section className={classes.secondSection}>
+      <section
+        className={showOrder ? classes.secondSection : classes.secondSection2}
+      >
         <div className={layoutActiveClass}>
           {allItems.map((ele, index) => (
             <div
@@ -113,8 +115,6 @@ const CategoriesPage = () => {
           ))}
         </div>
       </section>
-
-      <OrderComponent />
     </React.Fragment>
   );
 };

@@ -20,6 +20,10 @@ const Waiter_modal = React.lazy(() =>
   import("../PopUp-Components/WaiterModal")
 );
 
+const Order_component = React.lazy(() =>
+  import("../UI-Components/OrderComponent")
+);
+
 const All_Pages = () => {
   const dispatch = useDispatch();
 
@@ -28,7 +32,6 @@ const All_Pages = () => {
     window.localStorage.removeItem("persist:root");
     dispatch(controlActions.setInitialSlide(0));
     dispatch(controlActions.getServiceItems([]));
-    dispatch(controlActions.getSelectedItems([]));
     dispatch(controlActions.hideNavLang());
   };
 
@@ -47,6 +50,8 @@ const All_Pages = () => {
 
   const showWaiter = useSelector((state) => state.controler.show_waiter);
   const waiterSoon = useSelector((state) => state.controler.waiter_soon);
+  const showBell = useSelector((state) => state.controler.show_bell);
+  const showOrder = useSelector((state) => state.controler.show_order_com);
 
   return (
     <React.Fragment>
@@ -57,7 +62,8 @@ const All_Pages = () => {
         <Suspense fallback={<LoadingSpinner />}>
           {showWaiter && <Waiter_modal />}
           {waiterSoon && <Clock_modal />}
-          <BellComponent />
+          {showBell && <BellComponent />}
+          {showOrder && <Order_component />}
           <Routes>
             <Route
               path="/menu/:domain/:NumOfTable/:lang"

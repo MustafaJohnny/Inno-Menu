@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./HomePage.module.css";
 import Navigation from "../UI-Components/Navigation";
 import ServiceSoonModal from "../PopUp-Components/ServiceSoonModal";
-import OrderComponent from "../UI-Components/OrderComponent";
 import LangNavigation from "../UI-Components/LangNavigation";
 import SideNavigation from "../UI-Components/SideNavigation";
 import ServiceModal from "../PopUp-Components/ServiceModal";
@@ -39,12 +38,14 @@ const HomePage = () => {
     if (selectedItems.length === 0) setHideMenus(true);
   }, [serviceItems, selectedItems]);
 
+  const hideItems = useSelector((state) => state.controler.hide_items);
+  const serverAPI = useSelector((state) => state.controler.serverAPI);
+  const menuCurrency = useSelector((state) => state.controler.menu_currency);
+  const showOrder = useSelector((state) => state.controler.show_order_com);
   const showLangNav = useSelector((state) => state.controler.show_lang_nav);
   const showSideNav = useSelector((state) => state.controler.show_side_nav);
   const showService = useSelector((state) => state.controler.show_service);
   const soonService = useSelector((state) => state.controler.soon_service);
-  const hideItems = useSelector((state) => state.controler.hide_items);
-  const serverAPI = useSelector((state) => state.controler.serverAPI);
   const layoutState = useSelector((state) => state.controler.layout_oneFR);
   ////////////////////////////////////////////////////////////////////////////////
 
@@ -169,7 +170,9 @@ const HomePage = () => {
         <Navigation />
         <SwiperComponent />
       </section>
-      <section className={classes.secondSection}>
+      <section
+        className={showOrder ? classes.secondSection : classes.secondSection2}
+      >
         <div className={layoutActiveClass}>
           {hideMenus &&
             showMenus.map((ele, index) => (
@@ -178,7 +181,7 @@ const HomePage = () => {
                 style={{
                   backgroundImage: `linear-gradient(
                   0deg,
-                  #000000b4 16.31%,
+                  #0000005a 16.31%,
                   rgba(217, 217, 217, 0) 117.2%), url("${URL}/${ele.image}")`,
                 }}
                 key={ele.id}
@@ -199,7 +202,9 @@ const HomePage = () => {
                 <span id={index} className={classes.serviceName}>
                   {ele.name}
                 </span>
-                <span className={classes.servicePrice}>{ele.price} RUB</span>
+                <span className={classes.servicePrice}>
+                  {ele.price !== 0 ? ele.price + " " + menuCurrency : ""}
+                </span>
               </div>
               <div className={classes.serviceAction}>
                 <span id={index} className={classes.serviceDescription}>
@@ -240,7 +245,9 @@ const HomePage = () => {
                       {ele.description}
                     </span>
                   </div>
-                  <span className={classes.itemPrice}>{ele.price} RUB</span>
+                  <span className={classes.itemPrice}>
+                    {`${ele.price} ${menuCurrency}`}
+                  </span>
                 </div>
                 <div className={classes.itemAddArea}>
                   <button className={classes.minusBtn} type="button">
@@ -256,7 +263,6 @@ const HomePage = () => {
           </div>
         )}
       </section>
-      <OrderComponent />
     </React.Fragment>
   );
 };

@@ -1,6 +1,5 @@
 import React from "react";
 import classes from "./HomePage.module.css";
-import OrderComponent from "../UI-Components/OrderComponent";
 import LangNavigation from "../UI-Components/LangNavigation";
 import SideNavigation from "../UI-Components/SideNavigation";
 import { useEffect } from "react";
@@ -17,6 +16,7 @@ const ItemsPage = () => {
   }, []);
 
   const arrowState = useSelector((state) => state.controler.remove_arrow);
+  const showOrder = useSelector((state) => state.controler.show_order_com);
   const showLangNav = useSelector((state) => state.controler.show_lang_nav);
   const showSideNav = useSelector((state) => state.controler.show_side_nav);
   const serverAPI = useSelector((state) => state.controler.serverAPI);
@@ -27,12 +27,20 @@ const ItemsPage = () => {
   const URL = `http://${serverAPI}:8000/api/v1/client/fileimage/${params.domain}`;
   const itemsHeading = useSelector((state) => state.controler.items_heading);
   const selectedItems = useSelector((state) => state.controler.selected_items);
+  const cart_items = useSelector((state) => state.controler.cart_items);
+  console.log(cart_items);
 
   const navigateStepBack = () => {
-    navigate(-1);
-    dispatch(controlActions.toggleShowLayout(true));
     // Maybe it's a bad thing to do
     dispatch(controlActions.getSelectedItems([]));
+    dispatch(controlActions.toggleShowLayout(true));
+    navigate(-1);
+  };
+
+  // Adding to cat handling functions
+
+  const handleAddToCart = (meal) => {
+    dispatch(controlActions.addToCart(meal));
   };
 
   return (
@@ -53,9 +61,15 @@ const ItemsPage = () => {
           <span className={classes.foodSecHeading}>{itemsHeading}</span>
         </div>
       </section>
-      <section className={classes.secondSection}>
-        <div className={classes.itemsContainer}>
-          {selectedItems.map((ele, index) => (
+      <section
+        className={showOrder ? classes.secondSection : classes.secondSection2}
+      >
+        <div
+          className={
+            showOrder ? classes.itemsContainer : classes.itemsContainer2
+          }
+        >
+          {selectedItems.map((ele) => (
             <div key={ele.id} className={classes.wholeItem}>
               <div
                 style={{
@@ -84,7 +98,11 @@ const ItemsPage = () => {
                   -
                 </button>
                 <span className={classes.itemQTA}>1</span>
-                <button className={classes.plusBtn} type="button">
+                <button
+                  onClick={() => handleAddToCart(ele)}
+                  className={classes.plusBtn}
+                  type="button"
+                >
                   +
                 </button>
               </div>
@@ -92,8 +110,6 @@ const ItemsPage = () => {
           ))}
         </div>
       </section>
-
-      <OrderComponent />
     </React.Fragment>
   );
 };
