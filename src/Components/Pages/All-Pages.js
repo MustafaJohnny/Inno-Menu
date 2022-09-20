@@ -31,6 +31,7 @@ const All_Pages = () => {
     dispatch(controlActions.setInitialSlide(0));
     dispatch(controlActions.getServiceItems([]));
     dispatch(controlActions.hideNavLang());
+    dispatch(controlActions.getTotal());
   };
 
   useEffect(() => {

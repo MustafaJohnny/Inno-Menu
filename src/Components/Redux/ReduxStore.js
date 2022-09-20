@@ -147,6 +147,51 @@ const controlSlice = createSlice({
         state.cart_items.push(tempMeal);
       }
     },
+
+    removeFromCart(state, action) {
+      const nextCartMeal = state.cart_items.filter(
+        (meal) => meal.id !== action.payload.id
+      );
+
+      state.cart_items = nextCartMeal;
+    },
+
+    decreaseMealQuantity(state, action) {
+      const itemIndex = state.cart_items.findIndex(
+        (item) => item.id === action.payload.id
+      );
+
+      if (state.cart_items[itemIndex].cartQuantity > 1) {
+        state.cart_items[itemIndex].cartQuantity -= 1;
+      } else if (state.cart_items[itemIndex].cartQuantity === 1) {
+        const nextCartItems = state.cart_items.filter(
+          (item) => item.id !== action.payload.id
+        );
+
+        state.cart_items = nextCartItems;
+      }
+    },
+
+    getTotal(state) {
+      let { total, quantity } = state.cart_items.reduce(
+        (cartTotal, cartItem) => {
+          const { price, cartQuantity } = cartItem;
+          const itemTotal = price * cartQuantity;
+
+          cartTotal.total += itemTotal;
+          cartTotal.quantity += cartQuantity;
+
+          return cartTotal;
+        },
+        {
+          total: 0,
+          quantity: 0,
+        }
+      );
+
+      state.cart_total_quantity = quantity;
+      state.cart_total_amount = total;
+    },
   },
 });
 

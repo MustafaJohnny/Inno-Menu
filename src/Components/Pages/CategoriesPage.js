@@ -103,7 +103,7 @@ const CategoriesPage = () => {
               style={{
                 backgroundImage: `linear-gradient(
                   0deg,
-                  #000000b4 16.31%,
+                  #0000005a 16.31%,
                   rgba(217, 217, 217, 0) 117.2%), url("${URL}/${ele.image}")`,
               }}
               key={ele.id}

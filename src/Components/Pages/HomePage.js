@@ -161,6 +161,12 @@ const HomePage = () => {
     dispatch(controlActions.toggleShowService());
   };
 
+  // Adding to cat handling function
+  const handleAddToCart = (meal) => {
+    dispatch(controlActions.addToCart(meal));
+    dispatch(controlActions.getTotal());
+  };
+
   return (
     <React.Fragment>
       {showSideNav && <SideNavigation />}
@@ -251,12 +257,12 @@ const HomePage = () => {
                   </span>
                 </div>
                 <div className={classes.itemAddArea}>
-                  <button className={classes.minusBtn} type="button">
-                    -
-                  </button>
-                  <span className={classes.itemQTA}>1</span>
-                  <button className={classes.plusBtn} type="button">
-                    +
+                  <button
+                    onClick={() => handleAddToCart(ele)}
+                    className={classes.addCartBtn}
+                    type="button"
+                  >
+                    Добавить
                   </button>
                 </div>
               </div>

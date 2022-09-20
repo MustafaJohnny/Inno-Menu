@@ -18,6 +18,7 @@ const ItemsPage = () => {
 
   const arrowState = useSelector((state) => state.controler.remove_arrow);
   const showOrder = useSelector((state) => state.controler.show_order_com);
+  const menuCurrency = useSelector((state) => state.controler.menu_currency);
   const showLangNav = useSelector((state) => state.controler.show_lang_nav);
   const showSideNav = useSelector((state) => state.controler.show_side_nav);
   const serverAPI = useSelector((state) => state.controler.serverAPI);
@@ -28,8 +29,6 @@ const ItemsPage = () => {
   const URL = `http://${serverAPI}:8000/api/v1/client/fileimage/${params.domain}`;
   const itemsHeading = useSelector((state) => state.controler.items_heading);
   const selectedItems = useSelector((state) => state.controler.selected_items);
-  const cart_items = useSelector((state) => state.controler.cart_items);
-  console.log(cart_items);
 
   const navigateStepBack = () => {
     // Maybe it's a bad thing to do
@@ -38,10 +37,10 @@ const ItemsPage = () => {
     navigate(-1);
   };
 
-  // Adding to cat handling functions
-
+  // Adding to cat handling function
   const handleAddToCart = (meal) => {
     dispatch(controlActions.addToCart(meal));
+    dispatch(controlActions.getTotal());
   };
 
   return (
@@ -92,19 +91,17 @@ const ItemsPage = () => {
                     {ele.description}
                   </span>
                 </div>
-                <span className={classes.itemPrice}>{ele.price} RUB</span>
+                <span
+                  className={classes.itemPrice}
+                >{`${ele.price} ${menuCurrency}`}</span>
               </div>
               <div className={classes.itemAddArea}>
-                <button className={classes.minusBtn} type="button">
-                  -
-                </button>
-                <span className={classes.itemQTA}>1</span>
                 <button
                   onClick={() => handleAddToCart(ele)}
-                  className={classes.plusBtn}
+                  className={classes.addCartBtn}
                   type="button"
                 >
-                  +
+                  Добавить
                 </button>
               </div>
             </div>
