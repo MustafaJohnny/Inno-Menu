@@ -57,6 +57,7 @@ const LangNavigation = () => {
 
     dispatch(controlActions.toggleNavLang());
     dispatch(controlActions.setInitialSlide(0));
+    dispatch(controlActions.clearCart([]));
 
     window.location.reload();
   };

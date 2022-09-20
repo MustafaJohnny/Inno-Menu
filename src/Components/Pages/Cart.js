@@ -15,9 +15,13 @@ const Cart = () => {
 
   useEffect(() => {
     dispatch(controlActions.toggleShowLayout(false));
-    window.scrollTo(0, 0);
     dispatch(controlActions.getTotal());
   }, [cart_items]);
+
+  // Only when the page first render.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const arrowState = useSelector((state) => state.controler.remove_arrow);
   const showOrder = useSelector((state) => state.controler.show_order_com);

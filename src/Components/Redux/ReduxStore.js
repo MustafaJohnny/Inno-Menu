@@ -192,6 +192,10 @@ const controlSlice = createSlice({
       state.cart_total_quantity = quantity;
       state.cart_total_amount = total;
     },
+
+    clearCart(state, action) {
+      state.cart_items = action.payload;
+    },
   },
 });
 
