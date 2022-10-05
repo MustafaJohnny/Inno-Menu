@@ -1,6 +1,4 @@
 import React from "react";
-import classes from "./Navigation.module.css";
-import SideNav from "../Icons/SideNav.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { ListBullets, SquaresFour } from "phosphor-react";
@@ -10,6 +8,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Navigation = () => {
+  const mainStyle = useSelector(
+    (state) => state.controlerStyles.side_nav_style
+  );
+
+  const sideNavIcon = useSelector(
+    (state) => state.controlerStyles.side_nav_icon
+  );
+
   const [waitLogo, setWaitLogo] = useState(false);
 
   useEffect(() => {
@@ -82,22 +88,22 @@ const Navigation = () => {
 
   return (
     <React.Fragment>
-      <header className={classes.mainHeading}>
-        <nav className={classes.navArea}>
-          <div className={classes.logoArea} onClick={backToHomePage}>
+      <header className={mainStyle.mainHeading}>
+        <nav className={mainStyle.navArea}>
+          <div className={mainStyle.logoArea} onClick={backToHomePage}>
             {waitLogo && (
               <div
-                className={classes.logoImg}
+                className={mainStyle.logoImg}
                 style={{
                   backgroundImage: `url("${URL}/${ownerLogo}")`,
                 }}
               ></div>
             )}
-            <span className={classes.textLogo}>{ownerName}</span>
+            <span className={mainStyle.textLogo}>{ownerName}</span>
           </div>
-          <div className={classes.actionArea}>
+          <div className={mainStyle.actionArea}>
             {showLayout && (
-              <div className={classes.layoutArea}>
+              <div className={mainStyle.layoutArea}>
                 <ListBullets
                   onClick={toggleLayout}
                   size={26}
@@ -116,14 +122,14 @@ const Navigation = () => {
             <button
               onClick={togglleNavLang}
               type="button"
-              className={classes.btnLanguages}
+              className={mainStyle.btnLanguages}
             >
               {!params.lang ? "EN" : langLetter}
             </button>
             <img
               onClick={toggleNavSide}
-              className={classes.sideNavIcon}
-              src={SideNav}
+              className={mainStyle.sideNavIcon}
+              src={sideNavIcon}
               alt="icon"
             />
           </div>
