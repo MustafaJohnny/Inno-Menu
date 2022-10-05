@@ -1,6 +1,5 @@
 import React from "react";
 import Overlay from "../UI-Components/Overlay";
-import classes from "./SideNavigation.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,8 +8,13 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 const LangNavigation = () => {
-  const [languages, setLanguages] = useState([]);
+  const mainStyle = useSelector(
+    (state) => state.controlerStyles.side_nav_style
+  );
+
   const serverAPI = useSelector((state) => state.controler.serverAPI);
+
+  const [languages, setLanguages] = useState([]);
 
   useEffect(() => {
     let mounted = true;
@@ -69,11 +73,11 @@ const LangNavigation = () => {
   return (
     <React.Fragment>
       <Overlay />
-      <div className={classes.modal}>
-        <nav className={classes.langNav}>
+      <div className={mainStyle.modal}>
+        <nav className={mainStyle.langNav}>
           {languages.map((element, index) => (
             <button
-              className={classes.langBtn}
+              className={mainStyle.langBtn}
               onClick={getUserLanguage}
               key={index}
               type="button"
@@ -84,7 +88,7 @@ const LangNavigation = () => {
           ))}
         </nav>
 
-        <button onClick={closeNavLang} className={classes.btnCloseModal}>
+        <button onClick={closeNavLang} className={mainStyle.btnCloseModal}>
           &times;
         </button>
       </div>

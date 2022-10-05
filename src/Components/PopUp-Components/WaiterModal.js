@@ -1,11 +1,15 @@
-import classes from "./WaiterModal.module.css";
-import imgBell from "../Icons/imgBell.png";
-import Overlay from "../UI-Components/Overlay";
-import { useDispatch } from "react-redux";
-import { controlActions } from "../Redux/ReduxStore";
 import React from "react";
+import Overlay from "../UI-Components/Overlay";
+import { controlActions } from "../Redux/ReduxStore";
+import { useDispatch, useSelector } from "react-redux";
 
 const WaiterModal = () => {
+  const mainStyle = useSelector(
+    (state) => state.controlerStyles.waiter_modal_style
+  );
+
+  const waiterImg = useSelector((state) => state.controlerStyles.waiter_img);
+
   const dispatch = useDispatch();
 
   const showWaiterNow = () => {
@@ -20,21 +24,21 @@ const WaiterModal = () => {
   return (
     <React.Fragment>
       <Overlay />
-      <div className={classes.modal}>
-        <div className={classes.MessageArea}>
-          <p className={classes.theMessage2}>Вы действительно хотите</p>
-          <p className={classes.theMessage2}>позвать официанта?</p>
+      <div className={mainStyle.modal}>
+        <div className={mainStyle.MessageArea}>
+          <p className={mainStyle.theMessage2}>Вы действительно хотите</p>
+          <p className={mainStyle.theMessage2}>позвать официанта?</p>
         </div>
-        <img alt="bell-icon" src={imgBell} className={classes.waiterBell} />
-        <div className={classes.buttonsArea}>
+        <img alt="bell-icon" src={waiterImg} className={mainStyle.waiterBell} />
+        <div className={mainStyle.buttonsArea}>
           <button
             onClick={callWaiterHideModal}
-            className={`${classes.btn4} ${classes.btn2}`}
+            className={`${mainStyle.btn4} ${mainStyle.btn2}`}
           >
             Позвать Официанта
           </button>
         </div>
-        <button onClick={showWaiterNow} className={classes.btnCloseModal}>
+        <button onClick={showWaiterNow} className={mainStyle.btnCloseModal}>
           &times;
         </button>
       </div>

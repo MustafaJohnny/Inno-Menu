@@ -1,10 +1,13 @@
-import classes from "./SideNavigation.module.css";
 import Overlay from "../UI-Components/Overlay";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { controlActions } from "../Redux/ReduxStore";
 
 const SideNavigation = () => {
+  const mainStyle = useSelector(
+    (state) => state.controlerStyles.side_nav_style
+  );
+
   const dispatch = useDispatch();
 
   const closeNavSide = () => {
@@ -14,15 +17,15 @@ const SideNavigation = () => {
   return (
     <React.Fragment>
       <Overlay />
-      <div className={classes.modal}>
-        <nav className={classes.sideNav}>
-          <span className={classes.navLink}>About Us</span>
-          <span className={classes.navLink}>Contacts</span>
-          <span className={classes.navLink}>Service</span>
-          <span className={classes.navLink}>Menu</span>
-          <span className={classes.navLink}>Cart</span>
+      <div className={mainStyle.modal}>
+        <nav className={mainStyle.sideNav}>
+          <span className={mainStyle.navLink}>About Us</span>
+          <span className={mainStyle.navLink}>Contacts</span>
+          <span className={mainStyle.navLink}>Service</span>
+          <span className={mainStyle.navLink}>Menu</span>
+          <span className={mainStyle.navLink}>Cart</span>
         </nav>
-        <button onClick={closeNavSide} className={classes.btnCloseModal}>
+        <button onClick={closeNavSide} className={mainStyle.btnCloseModal}>
           &times;
         </button>
       </div>

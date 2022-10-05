@@ -1,11 +1,15 @@
 import React from "react";
-import Basket from "../Icons/Basket.svg";
-import classes from "./OrderComponent.module.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { controlActions } from "../Redux/ReduxStore";
 
 const BasketComponent = () => {
+  const mainStyle = useSelector(
+    (state) => state.controlerStyles.order_comp_style
+  );
+
+  const basketIcon = useSelector((state) => state.controlerStyles.basket_icon);
+
   const menuCurrency = useSelector((state) => state.controler.menu_currency);
   const totalAmount = useSelector((state) => state.controler.cart_total_amount);
   const totalQuantity = useSelector(
@@ -27,17 +31,17 @@ const BasketComponent = () => {
   };
   return (
     <React.Fragment>
-      <div className={classes.componentOrder}>
-        <div className={classes.totalArea}>
-          <p className={classes.total}>Итого :</p>
+      <div className={mainStyle.componentOrder}>
+        <div className={mainStyle.totalArea}>
+          <p className={mainStyle.total}>Итого :</p>
           <span
-            className={classes.price}
+            className={mainStyle.price}
           >{`${totalAmount}  ${menuCurrency}`}</span>
         </div>
-        <button onClick={goToCart} type="button" className={classes.orderBtn}>
-          <span className={classes.orderText}>Заказать</span>
-          <img className={classes.basketIcon} alt="icon" src={Basket} />
-          <span className={classes.orderAdded}>{totalQuantity}</span>
+        <button onClick={goToCart} type="button" className={mainStyle.orderBtn}>
+          <span className={mainStyle.orderText}>Заказать</span>
+          <img className={mainStyle.basketIcon} alt="icon" src={basketIcon} />
+          <span className={mainStyle.orderAdded}>{totalQuantity}</span>
         </button>
       </div>
     </React.Fragment>

@@ -1,0 +1,78 @@
+@media (max-width: 37.5em) {
+  .componentOrder {
+    bottom: -2%;
+    z-index: 10;
+    width: 100vw;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    background-color: #000;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 3vw 4.2vw 9.5vw 4.2vw;
+    justify-content: space-between;
+    box-shadow: 0px -10px 20px rgba(220, 220, 228, 0.3);
+    font-family: "Source Sans Pro", sans-serif;
+  }
+
+  .totalArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5vw;
+  }
+
+  .total {
+    font-family: inherit;
+    color: #d6d3d1;
+    font-weight: 500;
+    font-size: 3.5vw;
+  }
+
+  .price {
+    color: #fff;
+    font-weight: 600;
+    font-size: 4vw;
+  }
+
+  .orderBtn {
+    font-family: "Montserrat Alternates", sans-serif;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+    border: none;
+    background-color: #d3ae0e !important;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    padding: 1vw 5vw;
+  }
+
+  .orderText {
+    color: #fff;
+    font-weight: 700;
+    font-size: 3.8vw;
+    font-family: inherit;
+  }
+
+  .basketIcon {
+    width: 8.5vw;
+    position: relative;
+  }
+
+  .orderAdded {
+    position: absolute;
+    right: 9%;
+    top: 17%;
+    color: #2d2d2d;
+    font-weight: 800;
+    font-size: 2.5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    width: 4vw;
+    height: 4vw;
+    border-radius: 100%;
+  }
+}

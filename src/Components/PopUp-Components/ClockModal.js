@@ -1,11 +1,15 @@
-import classes from "./WaiterModal.module.css";
 import Overlay from "../UI-Components/Overlay";
-import ClockImg from "../Icons/Clock.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { controlActions } from "../Redux/ReduxStore";
 import React from "react";
 
 const ClockModal = () => {
+  const mainStyle = useSelector(
+    (state) => state.controlerStyles.waiter_modal_style
+  );
+
+  const clockImg = useSelector((state) => state.controlerStyles.clock_img);
+
   const dispatch = useDispatch();
 
   const HideModalsWaiter = () => {
@@ -15,21 +19,21 @@ const ClockModal = () => {
   return (
     <React.Fragment>
       <Overlay />
-      <div className={`${classes.modal} ${classes.modal2}`}>
-        <div className={classes.MessageArea}>
-          <p className={classes.theMessage2}>Пожалуйста, подождите </p>
-          <p className={classes.theMessage2}>Официант скоро подойдет!</p>
+      <div className={`${mainStyle.modal} ${mainStyle.modal2}`}>
+        <div className={mainStyle.MessageArea}>
+          <p className={mainStyle.theMessage2}>Пожалуйста, подождите </p>
+          <p className={mainStyle.theMessage2}>Официант скоро подойдет!</p>
         </div>
-        <img alt="bell-icon" src={ClockImg} className={classes.clockImg} />
-        <div className={classes.buttonsArea}>
+        <img alt="bell-icon" src={clockImg} className={mainStyle.clockImg} />
+        <div className={mainStyle.buttonsArea}>
           <button
             onClick={HideModalsWaiter}
-            className={`${classes.btn2} ${classes.btn3}`}
+            className={`${mainStyle.btn2} ${mainStyle.btn3}`}
           >
             Продолжать
           </button>
         </div>
-        <button onClick={HideModalsWaiter} className={classes.btnCloseModal}>
+        <button onClick={HideModalsWaiter} className={mainStyle.btnCloseModal}>
           &times;
         </button>
       </div>

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { ListBullets, SquaresFour } from "phosphor-react";
 import { controlActions } from "../Redux/ReduxStore";
+import { controlStylesActions } from "../Redux/ReduxStyleStore";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -21,6 +22,8 @@ const Navigation = () => {
 
       if (mounted) {
         dispatch(controlActions.getAllOwnerData(request.data));
+        // request.data.design_start
+        dispatch(controlStylesActions.toggleDesignStyle(2));
       }
     };
 
