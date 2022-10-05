@@ -27,7 +27,7 @@ import Bell1 from "../Icons/Bell.svg";
 import Bell2 from "../Icons/Bell2.svg";
 
 const initialState = {
-  side_nav_style: "",
+  side_nav_style: "e",
   order_comp_style: "",
   waiter_modal_style: "",
   waiter_img: "",
