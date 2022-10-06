@@ -1,5 +1,4 @@
 import React from "react";
-import classes from "./SwiperComponent.module.css";
 import { EffectCoverflow, Pagination } from "swiper";
 import { useSelector, useDispatch } from "react-redux";
 import { controlActions } from "../Redux/ReduxStore";
@@ -9,6 +8,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const SwiperComponent = () => {
+  const mainStyle = useSelector((state) => state.controlerStyles.swiper_style);
+
   const serverAPI = useSelector((state) => state.controler.serverAPI);
   const initialSlide = useSelector((state) => state.controler.initial_slide);
   ///////////////////////////////////////////////////////////////////////////////////
@@ -136,18 +137,18 @@ const SwiperComponent = () => {
           slideShadows: false,
         }}
         modules={[EffectCoverflow, Pagination]}
-        className={classes.swiperEl}
+        className={mainStyle.swiperEl}
       >
         {carouselState &&
           ownerRestaurants.map((ele) => (
             <SwiperSlide
               style={{ backgroundImage: `url("${URL}/${ele.image}")` }}
-              className={classes.swiperSlide}
+              className={mainStyle.swiperSlide}
               key={ele.id}
               id={ele.id}
             >
-              <div className={classes.packageArea}>
-                <span className={classes.packageName}>{ele.name_rest}</span>
+              <div className={mainStyle.packageArea}>
+                <span className={mainStyle.packageName}>{ele.name_rest}</span>
               </div>
             </SwiperSlide>
           ))}
@@ -156,12 +157,14 @@ const SwiperComponent = () => {
           ownerServices.map((ele) => (
             <SwiperSlide
               style={{ backgroundImage: `url("${URL}/${ele.image}")` }}
-              className={`${classes.swiperSlide} ${classes.services}`}
+              className={`${mainStyle.swiperSlide} ${mainStyle.services}`}
               key={ele.id + 5}
               id={ele.id}
             >
-              <div className={classes.packageArea}>
-                <span className={classes.packageName}>{ele.name_service}</span>
+              <div className={mainStyle.packageArea}>
+                <span className={mainStyle.packageName}>
+                  {ele.name_service}
+                </span>
               </div>
             </SwiperSlide>
           ))}

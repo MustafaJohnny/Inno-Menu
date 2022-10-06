@@ -5,8 +5,14 @@ import sideNav2 from "../UI-Components/SideNavigation2.module.css";
 import orderComp1 from "../UI-Components/OrderComponent.module.css";
 import orderComp2 from "../UI-Components/OrderComponent2.module.css";
 
+import mainPages1 from "../Pages/HomePage.module.css";
+import mainPages2 from "../Pages/HomePage2.module.css";
+
 import waiterModal1 from "../PopUp-Components/WaiterModal.module.css";
 import waiterModal2 from "../PopUp-Components/WaiterModa2.module.css";
+
+import swiper1 from "../Swiper/SwiperComponent.module.css";
+import swiper2 from "../Swiper/SwiperComponent2.module.css";
 
 import SideNavIcon1 from "../Icons/SideNav.svg";
 import SideNavIcon2 from "../Icons/SideNav2.svg";
@@ -27,7 +33,7 @@ import Bell1 from "../Icons/Bell.svg";
 import Bell2 from "../Icons/Bell2.svg";
 
 const initialState = {
-  side_nav_style: "e",
+  side_nav_style: "",
   order_comp_style: "",
   waiter_modal_style: "",
   waiter_img: "",
@@ -38,6 +44,8 @@ const initialState = {
   side_nav_icon: "",
   layout_active_color: "",
   layout_notActive_color: "",
+  swiper_style: "",
+  pages_style: "",
 };
 
 const controlStylesSlice = createSlice({
@@ -55,6 +63,10 @@ const controlStylesSlice = createSlice({
         state.order_comp_style = orderComp1;
         state.bell_icon = Bell1;
         state.side_nav_icon = SideNavIcon1;
+        state.layout_active_color = "#27272a";
+        state.layout_notActive_color = "#a1a1aa";
+        state.swiper_style = swiper1;
+        state.pages_style = mainPages1;
       }
 
       if (action.payload === 2) {
@@ -67,6 +79,10 @@ const controlStylesSlice = createSlice({
         state.order_comp_style = orderComp2;
         state.bell_icon = Bell2;
         state.side_nav_icon = SideNavIcon2;
+        state.layout_active_color = "#1F1F1F";
+        state.layout_notActive_color = "#D5B118";
+        state.swiper_style = swiper2;
+        state.pages_style = mainPages2;
       }
     },
   },

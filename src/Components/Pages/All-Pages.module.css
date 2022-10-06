@@ -29,4 +29,8 @@
     pointer-events: none;
     transform: rotate(-90deg);
   }
+
+  .mainContaine {
+    background-color: red !important;
+  }
 }

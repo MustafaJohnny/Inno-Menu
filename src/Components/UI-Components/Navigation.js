@@ -59,9 +59,16 @@ const Navigation = () => {
   const showLayout = useSelector((state) => state.controler.show_layout);
   const layout1FR = useSelector((state) => state.controler.layout_oneFR);
   const layout2FR = useSelector((state) => state.controler.layout_twoFR);
+  const activeColor = useSelector(
+    (state) => state.controlerStyles.layout_active_color
+  );
 
-  const color1FR = layout1FR ? "#27272a" : "#a1a1aa";
-  const color2FR = !layout2FR ? "#a1a1aa" : "#27272a";
+  const notActiveColor = useSelector(
+    (state) => state.controlerStyles.layout_notActive_color
+  );
+
+  const color1FR = layout1FR ? activeColor : notActiveColor;
+  const color2FR = !layout2FR ? notActiveColor : activeColor;
 
   const URL = `http://${serverAPI}:8000/api/v1/client/fileimage/${params.domain}`;
   const ownerName = useSelector((state) => state.controler.owner_name);
@@ -106,13 +113,13 @@ const Navigation = () => {
               <div className={mainStyle.layoutArea}>
                 <ListBullets
                   onClick={toggleLayout}
-                  size={26}
+                  size={28}
                   color={color1FR}
                   weight="bold"
                 />
                 <SquaresFour
                   onClick={toggleLayout}
-                  size={26}
+                  size={28}
                   color={color2FR}
                   weight="fill"
                 />
