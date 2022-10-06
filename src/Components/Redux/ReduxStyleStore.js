@@ -5,8 +5,8 @@ import sideNav2 from "../UI-Components/SideNavigation2.module.css";
 import orderComp1 from "../UI-Components/OrderComponent.module.css";
 import orderComp2 from "../UI-Components/OrderComponent2.module.css";
 
-import mainPages1 from "../Pages/HomePage.module.css";
-import mainPages2 from "../Pages/HomePage2.module.css";
+import mainPages1 from "../Pages/PagesStyle.module.css";
+import mainPages2 from "../Pages/PagesStyle2.module.css";
 
 import waiterModal1 from "../PopUp-Components/WaiterModal.module.css";
 import waiterModal2 from "../PopUp-Components/WaiterModa2.module.css";

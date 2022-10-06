@@ -33,7 +33,7 @@ const Navigation = () => {
       if (mounted) {
         dispatch(controlActions.getAllOwnerData(request.data));
         // request.data.design_start
-        dispatch(controlStylesActions.toggleDesignStyle(2));
+        dispatch(controlStylesActions.toggleDesignStyle(1));
       }
     };
 

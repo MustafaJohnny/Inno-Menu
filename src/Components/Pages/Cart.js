@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./HomePage.module.css";
+import Navigation from "../UI-Components/Navigation";
 import LangNavigation from "../UI-Components/LangNavigation";
 import SideNavigation from "../UI-Components/SideNavigation";
 import OrderComponent from "../UI-Components/OrderComponent";
@@ -7,8 +7,6 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { controlActions } from "../Redux/ReduxStore";
-import Navigation from "../UI-Components/Navigation";
-import ArrowL from "../Icons/ArrowL.svg";
 
 const Cart = () => {
   const cart_items = useSelector((state) => state.controler.cart_items);
@@ -23,6 +21,8 @@ const Cart = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const mainStyle = useSelector((state) => state.controlerStyles.pages_style);
+  const arrowBack = useSelector((state) => state.controlerStyles.arrow_back);
   const arrowState = useSelector((state) => state.controler.remove_arrow);
   const showOrder = useSelector((state) => state.controler.show_order_com);
   const showLangNav = useSelector((state) => state.controler.show_lang_nav);
@@ -56,36 +56,38 @@ const Cart = () => {
     <React.Fragment>
       {showSideNav && <SideNavigation />}
       {showLangNav && <LangNavigation />}
-      <section className={classes.firstSection}>
+      <section className={mainStyle.firstSection}>
         <Navigation />
-        <div className={classes.theMealsHeading}>
+        <div className={mainStyle.theMealsHeading}>
           {arrowState && (
             <img
               onClick={navigateStepBack}
               alt="icon"
-              src={ArrowL}
-              className={classes.arrowIcon}
+              src={arrowBack}
+              className={mainStyle.arrowIcon}
             />
           )}
-          <span className={classes.foodSecHeading}>ваш заказ</span>
+          <span className={mainStyle.foodSecHeading}>ваш заказ</span>
         </div>
       </section>
 
       {cart_items.length === 0 ? (
-        <div className={classes.emptyArea}>
-          <span className={classes.emptyHeading}>ваша корзина пустая!</span>
+        <div className={mainStyle.emptyArea}>
+          <span className={mainStyle.emptyHeading}>ваша корзина пустая!</span>
         </div>
       ) : (
         <section
-          className={showOrder ? classes.secondSection : classes.secondSection2}
+          className={
+            showOrder ? mainStyle.secondSection : mainStyle.secondSection2
+          }
         >
           <div
             className={
-              showOrder ? classes.itemsContainer : classes.itemsContainer2
+              showOrder ? mainStyle.itemsContainer : mainStyle.itemsContainer2
             }
           >
             {cart_items.map((ele) => (
-              <div key={ele.id} className={classes.wholeItemCart}>
+              <div key={ele.id} className={mainStyle.wholeItemCart}>
                 <div
                   style={{
                     backgroundImage: `linear-gradient(
@@ -94,31 +96,31 @@ const Cart = () => {
                     rgba(217, 217, 217, 0) 117.2%
                   ), url("${URL}/${ele.image}")`,
                   }}
-                  className={classes.cartImgArea}
+                  className={mainStyle.cartImgArea}
                 ></div>
-                <div className={classes.cartInfoArea}>
-                  <div className={classes.cartNameSize}>
-                    <span className={classes.cartName}>{ele.name}</span>
-                    <span className={classes.cartSize}>
+                <div className={mainStyle.cartInfoArea}>
+                  <div className={mainStyle.cartNameSize}>
+                    <span className={mainStyle.cartName}>{ele.name}</span>
+                    <span className={mainStyle.cartSize}>
                       {ele.modifex[0].datamodifex[0].name}
                     </span>
                   </div>
-                  <span className={classes.cartPrice}>
+                  <span className={mainStyle.cartPrice}>
                     {`${ele.price * ele.cartQuantity} ${menuCurrency}`}
                   </span>
                 </div>
-                <div className={classes.itemAddArea}>
+                <div className={mainStyle.itemAddArea}>
                   <button
                     onClick={() => handleDecreaseCart(ele)}
-                    className={classes.minusBtn}
+                    className={mainStyle.minusBtn}
                     type="button"
                   >
                     -
                   </button>
-                  <span className={classes.itemQTA}>{ele.cartQuantity}</span>
+                  <span className={mainStyle.itemQTA}>{ele.cartQuantity}</span>
                   <button
                     onClick={() => handleIncreaseCart(ele)}
-                    className={classes.plusBtn}
+                    className={mainStyle.plusBtn}
                     type="button"
                   >
                     +
@@ -126,7 +128,7 @@ const Cart = () => {
                 </div>
                 <button
                   onClick={() => handleRemoveFromCart(ele)}
-                  className={classes.btnCloseModal}
+                  className={mainStyle.btnCloseModal}
                 >
                   &times;
                 </button>

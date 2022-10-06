@@ -1,5 +1,4 @@
 import React from "react";
-import classes from "./HomePage.module.css";
 import LangNavigation from "../UI-Components/LangNavigation";
 import SideNavigation from "../UI-Components/SideNavigation";
 import BasketComponent from "../UI-Components/BasketComponent";
@@ -7,12 +6,15 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import Navigation from "../UI-Components/Navigation";
-import ArrowL from "../Icons/ArrowL.svg";
 import { controlActions } from "../Redux/ReduxStore";
 import axios from "axios";
 
 const CategoriesPage = () => {
   const categorieItem = useSelector((state) => state.controler.categories_item);
+
+  const mainStyle = useSelector((state) => state.controlerStyles.pages_style);
+
+  const arrowBack = useSelector((state) => state.controlerStyles.arrow_back);
 
   useEffect(() => {
     dispatch(controlActions.toggleShowLayout(true));
@@ -25,13 +27,25 @@ const CategoriesPage = () => {
   const serverAPI = useSelector((state) => state.controler.serverAPI);
   ////////////////////////////////////////////////////////////////////////////////
   const layoutState = useSelector((state) => state.controler.layout_oneFR);
+  const desginNumber = useSelector(
+    (state) => state.controlerStyles.desginNumber
+  );
+
   const layoutActiveClass = layoutState
-    ? classes.menuContainer1FR
-    : classes.menuContainer2FR;
+    ? mainStyle.menuContainer1FR
+    : mainStyle.menuContainer2FR;
 
   const nameActiveClass = layoutState
-    ? classes.elementName1FR
-    : classes.elementName2FR;
+    ? mainStyle.elementName1FR
+    : mainStyle.elementName2FR;
+
+  const menuElActiveClass = layoutState
+    ? mainStyle.menuElement1FR
+    : mainStyle.menuElement2FR;
+
+  // Very important thing we will get back her later..
+  const neededStyle =
+    desginNumber === 1 ? mainStyle.menuElement : menuElActiveClass;
   ///////////////////////////////////////////////////////////////////////////////
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -80,20 +94,22 @@ const CategoriesPage = () => {
     <React.Fragment>
       {showSideNav && <SideNavigation />}
       {showLangNav && <LangNavigation />}
-      <section className={classes.firstSection}>
+      <section className={mainStyle.firstSection}>
         <Navigation />
-        <div className={classes.theMealsHeading}>
+        <div className={mainStyle.theMealsHeading}>
           <img
             onClick={navigateStepBack}
             alt="icon"
-            src={ArrowL}
-            className={classes.arrowIcon}
+            src={arrowBack}
+            className={mainStyle.arrowIcon}
           />
-          <span className={classes.foodSecHeading}>{categorieItem.name}</span>
+          <span className={mainStyle.foodSecHeading}>{categorieItem.name}</span>
         </div>
       </section>
       <section
-        className={showOrder ? classes.secondSection : classes.secondSection2}
+        className={
+          showOrder ? mainStyle.secondSection : mainStyle.secondSection2
+        }
       >
         <div className={layoutActiveClass}>
           {allItems.map((ele, index) => (
@@ -107,8 +123,17 @@ const CategoriesPage = () => {
                   rgba(217, 217, 217, 0) 117.2%), url("${URL}/${ele.image}")`,
               }}
               key={ele.id}
-              className={classes.menuElement}
+              className={neededStyle}
             >
+              <div
+                className={mainStyle.differentStyleImg}
+                // onClick={getClickedMenuOrItem}
+                key={ele.id}
+                id={index}
+                style={{
+                  backgroundImage: `url("${URL}/${ele.image}")`,
+                }}
+              ></div>
               <span id={index} className={nameActiveClass}>
                 {ele.name}
               </span>

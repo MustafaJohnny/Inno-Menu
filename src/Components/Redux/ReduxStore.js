@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import classes from "../UI-Components/SideNavigation.module.css";
-import classes2 from "../UI-Components/SideNavigation2.module.css";
 
 const initialState = {
   // Toggle States //

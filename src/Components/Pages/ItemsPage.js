@@ -1,5 +1,4 @@
 import React from "react";
-import classes from "./HomePage.module.css";
 import LangNavigation from "../UI-Components/LangNavigation";
 import SideNavigation from "../UI-Components/SideNavigation";
 import BasketComponent from "../UI-Components/BasketComponent";
@@ -8,7 +7,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { controlActions } from "../Redux/ReduxStore";
 import Navigation from "../UI-Components/Navigation";
-import ArrowL from "../Icons/ArrowL.svg";
 
 const ItemsPage = () => {
   useEffect(() => {
@@ -16,6 +14,8 @@ const ItemsPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const mainStyle = useSelector((state) => state.controlerStyles.pages_style);
+  const arrowBack = useSelector((state) => state.controlerStyles.arrow_back);
   const arrowState = useSelector((state) => state.controler.remove_arrow);
   const showOrder = useSelector((state) => state.controler.show_order_com);
   const menuCurrency = useSelector((state) => state.controler.menu_currency);
@@ -47,30 +47,32 @@ const ItemsPage = () => {
     <React.Fragment>
       {showSideNav && <SideNavigation />}
       {showLangNav && <LangNavigation />}
-      <section className={classes.firstSection}>
+      <section className={mainStyle.firstSection}>
         <Navigation />
-        <div className={classes.theMealsHeading}>
+        <div className={mainStyle.theMealsHeading}>
           {arrowState && (
             <img
               onClick={navigateStepBack}
               alt="icon"
-              src={ArrowL}
-              className={classes.arrowIcon}
+              src={arrowBack}
+              className={mainStyle.arrowIcon}
             />
           )}
-          <span className={classes.foodSecHeading}>{itemsHeading}</span>
+          <span className={mainStyle.foodSecHeading}>{itemsHeading}</span>
         </div>
       </section>
       <section
-        className={showOrder ? classes.secondSection : classes.secondSection2}
+        className={
+          showOrder ? mainStyle.secondSection : mainStyle.secondSection2
+        }
       >
         <div
           className={
-            showOrder ? classes.itemsContainer : classes.itemsContainer2
+            showOrder ? mainStyle.itemsContainer : mainStyle.itemsContainer2
           }
         >
           {selectedItems.map((ele) => (
-            <div key={ele.id} className={classes.wholeItem}>
+            <div key={ele.id} className={mainStyle.wholeItem}>
               <div
                 style={{
                   backgroundImage: `linear-gradient(
@@ -79,26 +81,26 @@ const ItemsPage = () => {
                     rgba(217, 217, 217, 0) 117.2%
                   ), url("${URL}/${ele.image}")`,
                 }}
-                className={classes.itemImgArea}
+                className={mainStyle.itemImgArea}
               ></div>
-              <div className={classes.itemInfoArea}>
-                <div className={classes.itemNameSize}>
-                  <span className={classes.itemName}>{ele.name}</span>
-                  <span className={classes.itemSize}>
+              <div className={mainStyle.itemInfoArea}>
+                <div className={mainStyle.itemNameSize}>
+                  <span className={mainStyle.itemName}>{ele.name}</span>
+                  <span className={mainStyle.itemSize}>
                     {ele.modifex[0].datamodifex[0].name}
                   </span>
-                  <span className={classes.itemDescription}>
+                  <span className={mainStyle.itemDescription}>
                     {ele.description}
                   </span>
                 </div>
                 <span
-                  className={classes.itemPrice}
+                  className={mainStyle.itemPrice}
                 >{`${ele.price} ${menuCurrency}`}</span>
               </div>
-              <div className={classes.itemAddArea}>
+              <div className={mainStyle.itemAddArea}>
                 <button
                   onClick={() => handleAddToCart(ele)}
-                  className={classes.addCartBtn}
+                  className={mainStyle.addCartBtn}
                   type="button"
                 >
                   Добавить
