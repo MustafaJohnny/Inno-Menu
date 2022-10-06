@@ -1,5 +1,4 @@
 import React from "react";
-import classes from "./HomePage.module.css";
 import Navigation from "../UI-Components/Navigation";
 import ServiceSoonModal from "../PopUp-Components/ServiceSoonModal";
 import BasketComponent from "../UI-Components/BasketComponent";
@@ -14,6 +13,12 @@ import { controlActions } from "../Redux/ReduxStore";
 import axios from "axios";
 
 const HomePage = () => {
+  const mainStyle = useSelector((state) => state.controlerStyles.pages_style);
+
+  const desginNumber = useSelector(
+    (state) => state.controlerStyles.desginNumber
+  );
+
   const restaurantsMenus = useSelector(
     (state) => state.controler.restaurants_menus
   );
@@ -51,12 +56,20 @@ const HomePage = () => {
   ////////////////////////////////////////////////////////////////////////////////
 
   const layoutActiveClass = layoutState
-    ? classes.menuContainer1FR
-    : classes.menuContainer2FR;
+    ? mainStyle.menuContainer1FR
+    : mainStyle.menuContainer2FR;
 
   const nameActiveClass = layoutState
-    ? classes.elementName1FR
-    : classes.elementName2FR;
+    ? mainStyle.elementName1FR
+    : mainStyle.elementName2FR;
+
+  const menuElActiveClass = layoutState
+    ? mainStyle.menuElement1FR
+    : mainStyle.menuElement2FR;
+
+  // Very important thing we will get back her later..
+  const neededStyle =
+    desginNumber === 1 ? mainStyle.menuElement : menuElActiveClass;
 
   const dispatch = useDispatch();
 
@@ -173,12 +186,14 @@ const HomePage = () => {
       {showLangNav && <LangNavigation />}
       {showService && <ServiceModal />}
       {soonService && <ServiceSoonModal />}
-      <section className={classes.firstSection}>
+      <section className={mainStyle.firstSection}>
         <Navigation />
         <SwiperComponent />
       </section>
       <section
-        className={showOrder ? classes.secondSection : classes.secondSection2}
+        className={
+          showOrder ? mainStyle.secondSection : mainStyle.secondSection2
+        }
       >
         <div className={layoutActiveClass}>
           {hideMenus &&
@@ -193,8 +208,17 @@ const HomePage = () => {
                 }}
                 key={ele.id}
                 id={index}
-                className={classes.menuElement}
+                className={neededStyle}
               >
+                <div
+                  className={mainStyle.differentStyleImg}
+                  onClick={getClickedMenuOrItem}
+                  key={ele.id}
+                  id={index}
+                  style={{
+                    backgroundImage: `url("${URL}/${ele.image}")`,
+                  }}
+                ></div>
                 <span id={index} className={nameActiveClass}>
                   {ele.name}
                 </span>
@@ -202,24 +226,24 @@ const HomePage = () => {
             ))}
         </div>
 
-        <div className={classes.menuContainer1FR}>
+        <div className={mainStyle.menuContainer1FR}>
           {serviceItems.map((ele, index) => (
-            <div key={ele.id} id={index} className={classes.serviceElement}>
-              <div className={classes.namePriceArea}>
-                <span id={index} className={classes.serviceName}>
+            <div key={ele.id} id={index} className={mainStyle.serviceElement}>
+              <div className={mainStyle.namePriceArea}>
+                <span id={index} className={mainStyle.serviceName}>
                   {ele.name}
                 </span>
-                <span className={classes.servicePrice}>
+                <span className={mainStyle.servicePrice}>
                   {ele.price !== 0 ? ele.price + " " + menuCurrency : ""}
                 </span>
               </div>
-              <div className={classes.serviceAction}>
-                <span id={index} className={classes.serviceDescription}>
+              <div className={mainStyle.serviceAction}>
+                <span id={index} className={mainStyle.serviceDescription}>
                   {ele.description}
                 </span>
                 <button
                   onClick={orderServiceNow}
-                  className={classes.serviceBtn}
+                  className={mainStyle.serviceBtn}
                 >
                   Заказать
                 </button>
@@ -229,9 +253,9 @@ const HomePage = () => {
         </div>
 
         {hideItems && (
-          <div className={classes.itemsContainer}>
+          <div className={mainStyle.itemsContainer}>
             {selectedItems.map((ele) => (
-              <div key={ele.id} className={classes.wholeItem}>
+              <div key={ele.id} className={mainStyle.wholeItem}>
                 <div
                   style={{
                     backgroundImage: `linear-gradient(
@@ -240,26 +264,26 @@ const HomePage = () => {
                     rgba(217, 217, 217, 0) 117.2%
                   ), url("${URL}/${ele.image}")`,
                   }}
-                  className={classes.itemImgArea}
+                  className={mainStyle.itemImgArea}
                 ></div>
-                <div className={classes.itemInfoArea}>
-                  <div className={classes.itemNameSize}>
-                    <span className={classes.itemName}>{ele.name}</span>
-                    <span className={classes.itemSize}>
+                <div className={mainStyle.itemInfoArea}>
+                  <div className={mainStyle.itemNameSize}>
+                    <span className={mainStyle.itemName}>{ele.name}</span>
+                    <span className={mainStyle.itemSize}>
                       {ele.modifex[0].datamodifex[0].name}
                     </span>
-                    <span className={classes.itemDescription}>
+                    <span className={mainStyle.itemDescription}>
                       {ele.description}
                     </span>
                   </div>
-                  <span className={classes.itemPrice}>
+                  <span className={mainStyle.itemPrice}>
                     {`${ele.price} ${menuCurrency}`}
                   </span>
                 </div>
-                <div className={classes.itemAddArea}>
+                <div className={mainStyle.itemAddArea}>
                   <button
                     onClick={() => handleAddToCart(ele)}
-                    className={classes.addCartBtn}
+                    className={mainStyle.addCartBtn}
                     type="button"
                   >
                     Добавить

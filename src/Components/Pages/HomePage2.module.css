@@ -15,27 +15,28 @@
   }
 
   .menuContainer1FR {
-    padding: 1vw 4.2vw 0vw 4.2vw;
+    gap: 4vw;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3.8vw;
+    padding: 1vw 4.2vw 0vw 4.2vw;
   }
 
   .menuContainer2FR {
-    padding: 1vw 4.2vw 0vw 4.2vw;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 3.8vw;
+    display: grid;
+    padding: 1vw 4.2vw 0vw 4.2vw;
+    grid-template-columns: 1fr 1fr;
   }
 
-  .menuElement {
+  .menuElement1FR {
+    z-index: 10;
     width: 100%;
     height: 32vw;
     display: flex;
     overflow: hidden;
     border-radius: 15px;
     align-items: center;
-    padding: 4vw 3.2vw;
+    padding: 3.8vw 3.8vw;
     gap: 5vw;
     text-transform: capitalize;
     background-size: cover;
@@ -45,11 +46,32 @@
     box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
   }
 
+  .menuElement2FR {
+    z-index: 10;
+    width: 100%;
+    height: 46vw;
+    display: flex;
+    overflow: hidden;
+    border-radius: 15px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2.6vw 3vw 2.6vw 3vw;
+    gap: 2vw;
+    text-transform: capitalize;
+    background-size: cover;
+    background-position: center;
+    background-image: unset !important;
+    background-color: #ffe36a;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+  }
+
   .differentStyleImg {
+    z-index: 5;
     border-radius: 15px;
     padding: 12vw 20vw;
     background-size: cover;
     background-position: center;
+    transform: translateX(-1vw);
     background-color: rgba(255, 255, 255, 0.547);
   }
 
@@ -66,8 +88,8 @@
     font-family: "Montserrat Alternates", sans-serif;
     font-weight: 700;
     color: #e52323;
-    font-size: 4.2vw;
-    text-align: center;
+    font-size: 4.3vw;
+    text-align: left;
     text-transform: capitalize;
   }
 
@@ -77,28 +99,29 @@
 
   .theMealsHeading {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2vw 4.2vw 2vw 4.2vw;
-    gap: 23vw;
-    margin-top: 22vw;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 25vw 4.2vw 0vw 4.2vw;
     position: relative;
     text-transform: capitalize;
   }
 
   .arrowIcon {
-    width: 5.5vw;
+    width: 2.8vw;
     position: absolute;
-    right: 92.5%;
-    bottom: 45%;
+    right: 92%;
+    bottom: 9.8%;
     transform: translate(50%, 50%);
+    z-index: 1000000000000000000;
   }
 
   .foodSecHeading {
-    text-align: center;
+    font-family: "Montserrat Alternates", sans-serif;
+    text-align: left;
     color: #18181b;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 4.6vw;
+    margin-left: 10vw;
     letter-spacing: 0.5px;
     text-transform: capitalize;
   }
@@ -395,6 +418,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    background-color: #ffe36a;
     box-shadow: 0 2px 5px rgb(0 0 0 / 15%);
     padding: 3.5vw 4vw;
   }
@@ -409,21 +433,23 @@
   }
 
   .serviceName {
-    color: #27272a;
+    color: #e52323;
     font-size: 3.8vw;
-    font-weight: 600;
+    font-weight: 700;
     width: 60%;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    font-family: "Montserrat Alternates", sans-serif;
   }
 
   .serviceDescription {
-    color: #27272a;
-    font-size: 3vw;
-    font-weight: 400;
+    font-family: "Source Sans Pro", sans-serif;
+    color: #18181b;
+    font-size: 3.2vw;
+    font-weight: 600;
     width: 70%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -440,7 +466,7 @@
   }
 
   .servicePrice {
-    color: #27272a;
+    color: #18181b;
     font-size: 3.8vw;
     font-weight: 600;
     margin-right: 1.5vw;
@@ -453,13 +479,14 @@
     justify-content: center;
     display: inline-block;
     font-weight: 600;
-    color: #fafaf9;
-    font-size: 2.7vw;
+    color: #fff;
+    font-size: 3vw;
     padding: 2vw 2.4vw;
     border-radius: 20px;
     border: none;
     box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
-    background: linear-gradient(180deg, #f97d48 0%, #f8506d 100%);
+    font-family: "Source Sans Pro", sans-serif;
+    background-color: #e52323;
   }
 
   /** Service Area **/

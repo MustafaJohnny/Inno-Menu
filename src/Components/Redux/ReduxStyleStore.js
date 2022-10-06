@@ -29,10 +29,14 @@ import ServiceImg2 from "../Icons/Service2.png";
 import BasketIcon1 from "../Icons/Basket.svg";
 import BasketIcon2 from "../Icons/Basket2.svg";
 
+import Arrow1 from "../Icons/ArrowBack.svg";
+import Arrow2 from "../Icons/ArrowBack2.svg";
+
 import Bell1 from "../Icons/Bell.svg";
 import Bell2 from "../Icons/Bell2.svg";
 
 const initialState = {
+  desginNumber: 0,
   side_nav_style: "",
   order_comp_style: "",
   waiter_modal_style: "",
@@ -46,6 +50,8 @@ const initialState = {
   layout_notActive_color: "",
   swiper_style: "",
   pages_style: "",
+  arrow_back: "",
+  body_color: "",
 };
 
 const controlStylesSlice = createSlice({
@@ -54,6 +60,7 @@ const controlStylesSlice = createSlice({
   reducers: {
     toggleDesignStyle(state, action) {
       if (action.payload === 1) {
+        state.desginNumber = 1;
         state.side_nav_style = sideNav1;
         state.waiter_modal_style = waiterModal1;
         state.waiter_img = waiterImg1;
@@ -67,9 +74,12 @@ const controlStylesSlice = createSlice({
         state.layout_notActive_color = "#a1a1aa";
         state.swiper_style = swiper1;
         state.pages_style = mainPages1;
+        state.arrow_back = Arrow1;
+        state.body_color = "#fff";
       }
 
       if (action.payload === 2) {
+        state.desginNumber = 2;
         state.side_nav_style = sideNav2;
         state.waiter_modal_style = waiterModal2;
         state.waiter_img = waiterImg2;
@@ -83,6 +93,8 @@ const controlStylesSlice = createSlice({
         state.layout_notActive_color = "#D5B118";
         state.swiper_style = swiper2;
         state.pages_style = mainPages2;
+        state.arrow_back = Arrow2;
+        state.body_color = "#feda3e";
       }
     },
   },

@@ -12,6 +12,10 @@ const Navigation = () => {
     (state) => state.controlerStyles.side_nav_style
   );
 
+  const body_color = useSelector((state) => state.controlerStyles.body_color);
+
+  document.body.style.backgroundColor = body_color;
+
   const sideNavIcon = useSelector(
     (state) => state.controlerStyles.side_nav_icon
   );
