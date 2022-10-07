@@ -23,6 +23,7 @@ const Cart = () => {
 
   const mainStyle = useSelector((state) => state.controlerStyles.pages_style);
   const arrowBack = useSelector((state) => state.controlerStyles.arrow_back);
+  const basketImg = useSelector((state) => state.controlerStyles.basket_img);
   const arrowState = useSelector((state) => state.controler.remove_arrow);
   const showOrder = useSelector((state) => state.controler.show_order_com);
   const showLangNav = useSelector((state) => state.controler.show_lang_nav);
@@ -52,6 +53,12 @@ const Cart = () => {
     dispatch(controlActions.addToCart(mealItem));
   };
 
+  const backToMainMenu = () => {
+    navigate(`/menu/${params.domain}/${params.NumOfTable}/${params.lang}`, {
+      replace: true,
+    });
+  };
+
   return (
     <React.Fragment>
       {showSideNav && <SideNavigation />}
@@ -73,7 +80,19 @@ const Cart = () => {
 
       {cart_items.length === 0 ? (
         <div className={mainStyle.emptyArea}>
+          <img
+            src={basketImg}
+            className={mainStyle.basketEmptyImg}
+            alt="basket"
+          />
           <span className={mainStyle.emptyHeading}>ваша корзина пустая!</span>
+          <button
+            className={`${mainStyle.cartBackBtn} ${mainStyle.addCartBtn}`}
+            onClick={backToMainMenu}
+            type="button"
+          >
+            Смотреть меню
+          </button>
         </div>
       ) : (
         <section
@@ -109,7 +128,7 @@ const Cart = () => {
                     {`${ele.price * ele.cartQuantity} ${menuCurrency}`}
                   </span>
                 </div>
-                <div className={mainStyle.itemAddArea}>
+                <div className={mainStyle.CartButtonsArea}>
                   <button
                     onClick={() => handleDecreaseCart(ele)}
                     className={mainStyle.minusBtn}

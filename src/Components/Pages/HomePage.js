@@ -210,7 +210,6 @@ const HomePage = () => {
               >
                 <div
                   className={mainStyle.differentStyleImg}
-                  // onClick={getClickedMenuOrItem}
                   key={ele.id}
                   id={index}
                   style={{

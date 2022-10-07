@@ -99,19 +99,47 @@
   /** Cart Page **/
 
   .emptyArea {
+    margin-top: 9vw !important;
     display: flex;
     align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    gap: 11vw;
+  }
+
+  .emptyArea::after {
+    content: "";
+    top: 25%;
+    right: 0%;
+    width: 110%;
+    height: 80%;
+    z-index: -1;
+    position: absolute;
+    background: radial-gradient(
+      53.08% 53.08% at 50% 50%,
+      #fd9cd052 0%,
+      rgba(255, 242, 249, 0) 100%
+    );
+    border-radius: 260.926px;
   }
 
   .emptyHeading {
-    margin-top: 50vw;
     text-align: center;
     color: #18181b;
-    font-weight: 600;
-    font-size: 5.5vw;
+    font-weight: 700;
+    font-size: 5.2vw;
     letter-spacing: 0.5px;
     text-transform: capitalize;
+  }
+
+  .basketEmptyImg {
+    width: 50vw;
+  }
+
+  .cartBackBtn {
+    font-weight: 600 !important;
+    font-size: 4vw !important;
+    padding: 4vw 15vw !important;
+    border-radius: 20px !important;
   }
 
   .btnCloseModal {
@@ -335,6 +363,18 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+  }
+
+  .CartButtonsArea {
+    display: flex;
+    gap: 2.5vw;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    position: absolute;
+    right: 14.5%;
+    bottom: 16%;
+    transform: translate(50%, 50%);
   }
 
   .minusBtn {

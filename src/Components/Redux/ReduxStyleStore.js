@@ -20,6 +20,9 @@ import SideNavIcon2 from "../Icons/SideNav2.svg";
 import waiterImg1 from "../Icons/imgBell.png";
 import waiterImg2 from "../Icons/imgBell2.png";
 
+import BasketImg1 from "../Icons/CartImg.png";
+import BasketImg2 from "../Icons/CartImg2.png";
+
 import ClockImg1 from "../Icons/Clock.png";
 import ClockImg2 from "../Icons/Clock2.png";
 
@@ -41,6 +44,7 @@ const initialState = {
   order_comp_style: "",
   waiter_modal_style: "",
   waiter_img: "",
+  basket_img: "",
   clock_img: "",
   service_img: "",
   basket_icon: "",
@@ -76,6 +80,7 @@ const controlStylesSlice = createSlice({
         state.pages_style = mainPages1;
         state.arrow_back = Arrow1;
         state.body_color = "#fff";
+        state.basket_img = BasketImg1;
       }
 
       if (action.payload === 2) {
@@ -95,6 +100,7 @@ const controlStylesSlice = createSlice({
         state.pages_style = mainPages2;
         state.arrow_back = Arrow2;
         state.body_color = "#feda3e";
+        state.basket_img = BasketImg2;
       }
     },
   },
