@@ -9,6 +9,7 @@ const OrderComponent = () => {
   const basketIcon = useSelector((state) => state.controlerStyles.basket_icon);
 
   const menuCurrency = useSelector((state) => state.controler.menu_currency);
+
   const totalAmount = useSelector((state) => state.controler.cart_total_amount);
   const totalQuantity = useSelector(
     (state) => state.controler.cart_total_quantity

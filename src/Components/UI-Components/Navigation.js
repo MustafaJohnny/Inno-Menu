@@ -50,6 +50,8 @@ const Navigation = () => {
       setWaitLogo(true);
     }, 500);
 
+    dispatch(controlActions.getUserDomainAndNumOfTable(params));
+
     return () => {
       mounted = false;
     };

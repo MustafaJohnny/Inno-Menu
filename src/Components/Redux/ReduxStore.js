@@ -17,6 +17,8 @@ const initialState = {
   show_order_com: false,
   initial_slide: 0,
   first_carousel: 50,
+  user_num_of_table: "",
+  user_domain: "",
   // Data States //
   owner_restaurants: [],
   restaurants_menus: [],
@@ -122,6 +124,11 @@ const controlSlice = createSlice({
 
     getServiceItems(state, action) {
       state.service_items = action.payload;
+    },
+
+    getUserDomainAndNumOfTable(state, action) {
+      state.user_num_of_table = action.payload.NumOfTable;
+      state.user_domain = action.payload.domain;
     },
 
     setInitialSlide(state, action) {
