@@ -18,6 +18,7 @@ const initialState = {
   initial_slide: 0,
   first_carousel: 50,
   user_num_of_table: "",
+  clicked_service_ID: "",
   user_domain: "",
   // Data States //
   owner_restaurants: [],
@@ -31,7 +32,7 @@ const initialState = {
   owner_logo: "Logo",
   user_language: "EN",
   menu_currency: "$",
-  serverAPI: "innomenu.ru",
+  serverAPI: "inme.su",
   // Cart States //
   cart_items: [],
   cart_total_quantity: 0,
@@ -133,6 +134,10 @@ const controlSlice = createSlice({
 
     setInitialSlide(state, action) {
       state.initial_slide = action.payload;
+    },
+
+    setClickedServiceID(state, action) {
+      state.clicked_service_ID = action.payload;
     },
 
     // Cart Functions //

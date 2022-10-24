@@ -1,4 +1,5 @@
 import Overlay from "../UI-Components/Overlay";
+import axios from "axios";
 import { controlActions } from "../Redux/ReduxStore";
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
@@ -8,8 +9,16 @@ const ServiceModal = () => {
     (state) => state.controlerStyles.waiter_modal_style
   );
 
-  const serviceImg = useSelector((state) => state.controlerStyles.service_img);
+  const numberOfTable = useSelector(
+    (state) => state.controler.user_num_of_table
+  );
 
+  const clickedServiceID = useSelector(
+    (state) => state.controler.clicked_service_ID
+  );
+
+  const serviceImg = useSelector((state) => state.controlerStyles.service_img);
+  const serverAPI = useSelector((state) => state.controler.serverAPI);
   const dispatch = useDispatch();
 
   const closeServiceModal = () => {
@@ -17,8 +26,19 @@ const ServiceModal = () => {
   };
 
   const orderServiceSure = () => {
-    dispatch(controlActions.toggleShowService());
-    dispatch(controlActions.toggleSoonService());
+    axios
+      .post(`http://${serverAPI}/api/v1/order/usluga_order`, "", {
+        params: {
+          uslugi_id: clickedServiceID,
+          table_uuid: numberOfTable,
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          dispatch(controlActions.toggleShowService());
+          dispatch(controlActions.toggleSoonService());
+        }
+      });
   };
 
   return (

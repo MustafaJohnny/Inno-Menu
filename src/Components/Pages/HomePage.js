@@ -32,10 +32,10 @@ const HomePage = () => {
   const [hideMenus, setHideMenus] = useState(true);
 
   useEffect(() => {
-    if (serviceItems.length !== 0) setHideMenus(false);
-    if (serviceItems.length === 0) setHideMenus(true);
     if (selectedItems.length !== 0) setHideMenus(false);
     if (selectedItems.length === 0) setHideMenus(true);
+    if (serviceItems.length !== 0) setHideMenus(false);
+    if (serviceItems.length === 0) setHideMenus(true);
   }, [serviceItems, selectedItems]);
 
   const mainStyle = useSelector((state) => state.controlerStyles.pages_style);
@@ -168,8 +168,9 @@ const HomePage = () => {
   };
 
   // Order Service function
-  const orderServiceNow = () => {
+  const orderServiceNow = (serviceID) => {
     dispatch(controlActions.toggleShowService());
+    dispatch(controlActions.setClickedServiceID(serviceID));
   };
 
   // Adding to cat handling function
@@ -241,7 +242,7 @@ const HomePage = () => {
                   </span>
                 )}
                 <button
-                  onClick={orderServiceNow}
+                  onClick={() => orderServiceNow(ele.id)}
                   className={mainStyle.serviceBtn}
                 >
                   Заказать
