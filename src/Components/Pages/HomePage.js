@@ -118,7 +118,7 @@ const HomePage = () => {
         getData();
       }
       ////////////////////////////////////////////////////////////////////////////////////
-      // When there is a menu with with some categories (more then one) we navigate to categories page and show them to the user.
+      // When there is a menu with some categories (more then one) we navigate to categories page and show them to the user.
       if (showMenus[event.target.id].categorymenu.length !== 1) {
         dispatch(controlActions.getCategoriesItem(showMenus[event.target.id]));
 

@@ -9,7 +9,6 @@ import axios from "axios";
 
 const SwiperComponent = () => {
   const mainStyle = useSelector((state) => state.controlerStyles.swiper_style);
-
   const serverAPI = useSelector((state) => state.controler.serverAPI);
   const initialSlide = useSelector((state) => state.controler.initial_slide);
   ///////////////////////////////////////////////////////////////////////////////////
@@ -36,7 +35,10 @@ const SwiperComponent = () => {
           dispatch(controlActions.getAllRestaurantsData(request.data));
 
           // If we have only one restaurent, only one menu and only one category then we send a requst to get the items of that one category.
-          if (request.data.menu[0].categorymenu.length === 1) {
+          if (
+            request.data.menu.length === 1 &&
+            request.data.menu[0].categorymenu.length === 1
+          ) {
             const lonelyCattgory = request.data.menu[0].categorymenu[0].id;
 
             let mounted = true;
@@ -56,11 +58,16 @@ const SwiperComponent = () => {
             getData();
           }
 
-          if (request.data.menu[0].categorymenu.length !== 1) {
+          // Some doubts about this logic.
+          if (
+            request.data.menu.length !== 1 &&
+            request.data.menu[0].categorymenu.length !== 1
+          ) {
             dispatch(controlActions.getSelectedItems([]));
             dispatch(controlActions.toggleHideItems(false));
             dispatch(controlActions.toggleShowLayout(true));
           }
+          // Some doubts about this logic.
         }
       };
 

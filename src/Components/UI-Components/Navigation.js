@@ -33,7 +33,6 @@ const Navigation = () => {
       if (mounted) {
         // Getting all the basic data about the user (First Request)
         dispatch(controlActions.getAllOwnerData(request.data));
-
         // Getting the design number for the whole app.
         dispatch(
           controlStylesActions.toggleDesignStyle(request.data.design_start)
