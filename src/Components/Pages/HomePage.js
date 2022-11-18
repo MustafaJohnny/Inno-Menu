@@ -39,8 +39,9 @@ const HomePage = () => {
   }, [serviceItems, selectedItems]);
 
   const mainStyle = useSelector((state) => state.controlerStyles.pages_style);
+  const serviceOrderBtn = useSelector((state)=> state.controlerStyles.serviceOrderBtn);
+  const titleItemBtn = useSelector((state)=> state.controlerStyles.titleItemBtn);
   const hideItems = useSelector((state) => state.controler.hide_items);
-  const serverAPI = useSelector((state) => state.controler.serverAPI);
   const menuCurrency = useSelector((state) => state.controler.menu_currency);
   const showOrder = useSelector((state) => state.controler.show_order_com);
   const showLangNav = useSelector((state) => state.controler.show_lang_nav);
@@ -75,7 +76,7 @@ const HomePage = () => {
 
   const params = useParams();
 
-  const URL = `http://${serverAPI}:8000/api/v1/client/fileimage/${params.domain}`;
+  const URL = `${process.env.REACT_APP_URL}/api/v1/client/fileimage/${params.domain}`;
 
   ////////////////////////////////////////////////////////////////////////////////
   const getClickedMenuOrItem = (event) => {
@@ -97,7 +98,7 @@ const HomePage = () => {
 
         const getData = async () => {
           const request = await axios.get(
-            `http://${serverAPI}:8000/api/v1/client/CategoryWhisProduct/${onlyItemID}`
+            `${process.env.REACT_APP_URL}/api/v1/client/CategoryWhisProduct/${onlyItemID}`
           );
 
           if (mounted) {
@@ -140,7 +141,7 @@ const HomePage = () => {
 
       const getData = async () => {
         const request = await axios.get(
-          `http://${serverAPI}:8000/api/v1/client/CategoryWhisProduct/${categorieID}`
+          `${process.env.REACT_APP_URL}/api/v1/client/CategoryWhisProduct/${categorieID}`
         );
 
         if (mounted) {
@@ -245,7 +246,7 @@ const HomePage = () => {
                   onClick={() => orderServiceNow(ele.id)}
                   className={mainStyle.serviceBtn}
                 >
-                  Заказать
+                  {serviceOrderBtn}
                 </button>
               </div>
             </div>
@@ -253,7 +254,7 @@ const HomePage = () => {
         </div>
 
         {hideItems && (
-          <div className={mainStyle.itemsContainer}>
+          <div className={mainStyle.squareContainer ? mainStyle.squareContainer : mainStyle.itemsContainer}>
             {selectedItems.map((ele) => (
               <div key={ele.id} className={mainStyle.wholeItem}>
                 <div
@@ -283,10 +284,10 @@ const HomePage = () => {
                 <div className={mainStyle.itemAddArea}>
                   <button
                     onClick={() => handleAddToCart(ele)}
-                    className={mainStyle.addCartBtn}
+                    className={mainStyle.miniAddCartBtn ? mainStyle.miniAddCartBtn : mainStyle.addCartBtn}
                     type="button"
                   >
-                    Добавить
+                    {titleItemBtn}
                   </button>
                 </div>
               </div>

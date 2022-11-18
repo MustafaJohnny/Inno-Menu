@@ -1,0 +1,111 @@
+@media (max-width: 37.5em) {
+  .componentOrder {
+    bottom: -2%;
+    z-index: 10;
+    width: 100vw;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    background-color: #1C1714;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    padding: 5vw 4.2vw 9.5vw 4.2vw;
+    justify-content: space-between;
+    font-family: "Nunito", sans-serif;
+  }
+
+  .totalArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5vw;
+
+  }
+
+  .total {
+    color: #F9CB99;
+    font-weight: 400;
+    font-size: 3.5vw;
+  }
+
+  .price {
+    color: #F9CB99;
+    font-weight: 600;
+    font-size: 4.6vw;
+    text-transform: uppercase;
+  }
+
+  .orderBtn {
+    border: 1px solid #000000;
+    background-color: #F9CB99;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+    padding: 1vw 5.5vw;
+    position: relative;
+  }
+
+  .orderText {
+    color: #0E0E0E;
+    font-weight: 700;
+    font-size: 3.7vw;
+    font-family: "Nunito", sans-serif !important;
+    text-transform: uppercase;
+  }
+
+  .basketIcon {
+    width: 8.5vw;
+    position: relative;
+  }
+
+  .orderAdded {
+    position: absolute;
+    left: 23%;
+    top: 8%;
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 2.4vw;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    background-color: #2d2d2d;
+    width: 3.5vw;
+    height: 3.5vw;
+    border-radius: 100%;
+  }
+
+  .positionOrder {
+    left: 27.5% !important;
+    top: 7% !important;
+  }
+
+  .bellElement {
+    background-color: #F64149;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 3.7vw;
+    width: 14.8vw;
+    border-radius: 100%;
+    position: fixed;
+    right: 13%;
+    bottom: 18.7%;
+    z-index: 12;
+    transform: translate(50%, 50%);
+  }
+
+  .bellBehind {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8vw;
+    border-radius: 100%;
+    position: fixed;
+    z-index: 11;
+    right: 13%;
+    bottom: 18.7%;
+    transform: translate(50%, 50%);
+  }
+}
+

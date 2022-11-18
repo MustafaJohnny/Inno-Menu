@@ -19,12 +19,12 @@ const ServiceSoonModal = () => {
   return (
     <React.Fragment>
       <Overlay />
-      <div className={`${mainStyle.modal} ${mainStyle.modal2}`}>
+      <div className={`${mainStyle.modal} ${mainStyle.modal2} ${mainStyle.modal6}`}>
         <div className={mainStyle.MessageArea}>
           <p className={mainStyle.theMessage2}>Спасибо за заказ! Ожидайте</p>
           <p className={mainStyle.theMessage2}>выполнения услуги..</p>
         </div>
-        <img alt="bell-icon" src={clockImg} className={mainStyle.clockImg} />
+        {clockImg && <img alt="bell-icon" src={clockImg} className={mainStyle.clockImg} />}
         <div className={mainStyle.buttonsArea}>
           <button
             onClick={closeServiceModalMSG}

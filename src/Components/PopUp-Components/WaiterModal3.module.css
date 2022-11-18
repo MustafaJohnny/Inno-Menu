@@ -1,0 +1,141 @@
+@media (max-width: 37.5em) {
+  .modal {
+    gap: 7vw !important;
+    top: 50%;
+    left: 50%;
+    width: 85vw;
+    height: 110vw;
+    display: flex;
+    position: fixed;
+    overflow: hidden;
+    transition: all 0.5s;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    flex-direction: column;
+    transform: translate(-50%, -50%);
+    z-index: 99999999999999999999999999999999999999;
+    animation: openModall 0.5s ease-out forwards;
+    font-family: "Open Sans", sans-serif;
+    background-position: center;
+    background-size: cover;
+    padding-top: 17vw;
+    padding-bottom: 6vw;
+  }
+
+  .modal3 {
+    background-image: url("../Icons/imgBell3.jpg") /*для первой модал, вызов офиццианта перед запросом на сервер*/
+  }
+
+  .modal4 {
+    background-image: url("../Icons/Clock3.jpg"); /*для второй модал, после запроса на сервер(офицциант)*/
+  }
+
+  .modal5 {
+    background-image: url("../Icons/Service3.jpg"); /*для первой модал в сервисах*/
+  }
+
+  .modal6 {
+    background-image: url("../Icons/ServiceSoon.jpg"); /*для второй модал в сервисах*/
+  }
+
+  .modalBg {
+    background-image: url("../Icons/Heart3.jpg");
+  }
+
+  @keyframes openModall {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -100%);
+    }
+
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -20%);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .btn {
+    font-family: "Open Sans", sans-serif;
+    background-color: #D9BA17;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 3.8vw 23vw;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 4.2vw;
+    color: #fff;
+    border: none;
+    transform: translateY(3vw);
+  }
+
+  .btn2 {
+    font-family: "Open Sans", sans-serif;
+    background-color: #D9BA17;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 3.8vw 25vw;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 4.2vw;
+    color: #fff;
+    border: none;
+    transform: translateY(3vw);
+  }
+
+  .btn4 {
+    font-family: "Open Sans", sans-serif;
+    padding: 3.8vw 15vw;
+    font-weight: 700;
+  }
+
+  .btnCloseModal {
+    font-family: inherit;
+    position: absolute;
+    background: none;
+    color: #969EA1;
+    font-weight: 300;
+    cursor: pointer;
+    font-size: 8vw;
+    border: none;
+    top: 0.5%;
+    right: 4%;
+  }
+
+  .MessageArea {
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+  }
+
+  .theMessage {
+    text-align: center;
+    font-family: inherit;
+    color: #FFFFFF;
+    font-weight: 700;
+    line-height: 6vw;
+    font-size: 4.5vw;
+  }
+
+  .theMessage2 {
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: 700;
+    line-height: 6vw;
+    font-size: 4.8vw;
+  }
+
+  .waiterBell {
+    width: 35vw;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+}

@@ -1,0 +1,269 @@
+@media (max-width: 37.5em) {
+  .modal {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed;
+    overflow: hidden;
+    transition: all 1s;
+    background-size: cover;
+    background-color: #AA1C1E;
+    background-position: left;
+    z-index: 99999999999999999999999999999999999999;
+    filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.25));
+    animation: openOnLeftModal 1s ease-out forwards;
+    font-family: "Roboto", sans-serif;
+  }
+
+  .langModal {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed;
+    overflow: hidden;
+    transition: all 1s;
+    background-size: cover;
+    background-color: #AA1C1E;
+    background-position: left;
+    z-index: 99999999999999999999999999999999999999;
+    filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.25));
+    animation: openOnRightModal 1s ease-out forwards;
+    font-family: "Nunito", sans-serif;
+  }
+
+  .navImg {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 95vh;
+  }
+
+  @keyframes openOnLeftModal {
+    0% {
+      right: 100%;
+    }
+
+    50% {
+      right: 0;
+    }
+
+    100% {
+      right: 0;
+    }
+  }
+
+  @keyframes openOnRightModal {
+    0% {
+      left: 100%;
+    }
+
+    50% {
+      left: 0;
+    }
+
+    100% {
+      left: 0;
+    }
+  }
+
+  .ownerLogoContainer {
+    display: flex;
+    gap: 2vw;
+    align-items: center;
+    position: absolute;
+    left: 31vw;
+    top: 6.5vw;
+  }
+
+  .btnCloseModal {
+    top: 6.5vw;
+    left: 5.5%;
+    width: 8vw;
+    height: 8vw;
+    display: flex;
+    cursor: pointer;
+    font-size: 8.5vw;
+    font-weight: 300;
+    color: #fff;
+    background: none;
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    font-family: "Source Sans Pro", sans-serif;
+  }
+
+  .btnLangCloseModal {
+    top: 6.5vw;
+    right: 5.5%;
+    width: 8vw;
+    height: 8vw;
+    display: flex;
+    cursor: pointer;
+    font-size: 8.5vw;
+    font-weight: 300;
+    color: #fff;
+    background: none;
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    font-family: "Source Sans Pro", sans-serif;
+  }
+
+  /** Side nav style **/
+  .sideNav {
+    gap: 6.5vw;
+    display: flex;
+    margin-top: 50vw;
+    margin-left: 19vw;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navLink {
+    color: #E3E3E3;
+    font-weight: 600;
+    font-size: 4.7vw;
+    text-transform: uppercase;
+    font-family: "Roboto", sans-serif;
+  }
+
+  /** Side nav style **/
+  /** Lang nav style **/
+  .langNav {
+    gap: 4.2vw;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 33vw;
+    margin-left: 12vw;
+  }
+
+  .languageFlagContainer {
+    display: flex;
+    align-items: center;
+    gap: 8vw;
+  }
+
+  .flagImg {
+    width: 9.5vw;
+    border: 0.5px solid #960909;
+  }
+
+  .langBtn {
+    background: transparent;
+    border: none;
+    color: #E3E3E3;
+    font-weight: 600;
+    font-size: 4.3vw;
+    text-transform: uppercase;
+    font-family: "Nunito", sans-serif;
+  }
+
+  /** Main Navigation **/
+  .mainHeading {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: #AA1C1E;
+    padding: 5vw 5vw 5vw 4.2vw;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: "Roboto Slab", sans-serif;
+  }
+
+  .navArea {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logoArea {
+    display: flex;
+    align-items: center;
+    gap: 2.3vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .textLogo {
+    color: #FFFFFF;
+    max-width: 45%;
+    font-weight: 700;
+    font-size: 4.8vw;
+    text-transform: uppercase;
+    font-family: "Roboto Slab", sans-serif;
+  }
+
+  .logoImg {
+    background-position: center;
+    background-size: cover;
+    width: 8.5vw;
+    height: 8.5vw;
+  }
+
+  .sideNavIcon {
+    width: 8vw;
+  }
+
+  .layoutArea {
+    display: none;
+  }
+
+  .actionArea {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .btnLanguages {
+    text-align: center;
+    font-size: 4.25vw;
+    font-weight: 700;
+    color: #fafafa;
+    font-family: "Nunito", sans-serif;
+    border: none;
+    background-color: transparent;
+  }
+}
+
+@media (max-width: 28.5em) {
+
+  .navLink {
+    font-size: 4.2vw;
+  }
+
+  .langNav {
+    margin-top: 33vw;
+  }
+
+  .langBtn {
+    font-size: 3.8vw;
+  }
+}
+
+@media (max-width: 24.5em) {
+  .navLink {
+    font-size: 4.8vw;
+  }
+
+  .langNav {
+    margin-top: 32vw;
+  }
+
+  .langBtn {
+    font-size: 4.7vw;
+  }
+}

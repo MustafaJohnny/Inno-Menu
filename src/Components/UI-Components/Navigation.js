@@ -12,9 +12,12 @@ const Navigation = () => {
     (state) => state.controlerStyles.side_nav_style
   );
 
+  const designNumber = useSelector(
+    (state) => state.controlerStyles.desginNumber
+  );
   const body_color = useSelector((state) => state.controlerStyles.body_color);
-
-  document.body.style.backgroundColor = body_color;
+  const backgroundType = designNumber === 5 ? "background" : "backgroundColor";
+  document.body.style[backgroundType] = body_color;
 
   const sideNavIcon = useSelector(
     (state) => state.controlerStyles.side_nav_icon
@@ -27,7 +30,7 @@ const Navigation = () => {
 
     const getData = async () => {
       const request = await axios.get(
-        `http://${serverAPI}:8000/api/v1/client/${params.domain}/${params.lang}/restandservice/${params.NumOfTable}`
+        `${process.env.REACT_APP_URL}/api/v1/client/${params.domain}/${params.lang}/restandservice/${params.NumOfTable}`
       );
 
       if (mounted) {
@@ -64,7 +67,6 @@ const Navigation = () => {
 
   const langLetter = params.lang.slice(-2);
 
-  const serverAPI = useSelector((state) => state.controler.serverAPI);
   const showLayout = useSelector((state) => state.controler.show_layout);
   const layout1FR = useSelector((state) => state.controler.layout_oneFR);
   const layout2FR = useSelector((state) => state.controler.layout_twoFR);
@@ -79,7 +81,7 @@ const Navigation = () => {
   const color1FR = layout1FR ? activeColor : notActiveColor;
   const color2FR = !layout2FR ? notActiveColor : activeColor;
 
-  const URL = `http://${serverAPI}:8000/api/v1/client/fileimage/${params.domain}`;
+  const URL = `${process.env.REACT_APP_URL}/api/v1/client/fileimage/${params.domain}`;
   const ownerName = useSelector((state) => state.controler.owner_name);
   const ownerLogo = useSelector((state) => state.controler.owner_logo);
 
@@ -134,7 +136,6 @@ const Navigation = () => {
                 />
               </div>
             )}
-
             <button
               onClick={togglleNavLang}
               type="button"

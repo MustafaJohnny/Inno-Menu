@@ -1,0 +1,130 @@
+@media (max-width: 37.5em) {
+  .modal {
+    gap: 10vw !important;
+    top: 50%;
+    left: 50%;
+    width: 85vw;
+    height: 75vw;
+    display: flex;
+    position: fixed;
+    transition: all 0.5s;
+    align-items: center;
+    border-radius: 25px;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+    z-index: 9999999;
+    animation: openModall 0.5s ease-out forwards;
+    box-shadow: 0 3px 20px rgba(101, 101, 101, 0.15);
+    font-family: "Source Sans Pro", sans-serif;
+  }
+
+
+  @keyframes openModall {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -100%);
+    }
+
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -20%);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .btn {
+    font-family: "Nunito", sans-serif !important;
+    background-color: #F64149;
+    display: inline-block;
+    border-radius: 35px;
+    padding: 4.4vw 0;
+    font-weight: 600;
+    margin-top: 3vw;
+    cursor: pointer;
+    font-size: 3.8vw;
+    color: #fff;
+    border: none;
+    min-width: 70vw;
+  }
+
+  .btn2 {
+    font-family: "Nunito", sans-serif !important;
+    background-color: #F64149;
+    display: inline-block;
+    border-radius: 35px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 3.8vw;
+    color: #fff;
+    border: none;
+    transform: translateY(3vw);
+    min-width: 70vw;
+    padding: 4.4vw 0;
+  }
+
+  .btnCloseModal {
+    font-family: inherit;
+    position: absolute;
+    background: none;
+    color: #969ea1;
+    font-weight: 300;
+    cursor: pointer;
+    font-size: 8vw;
+    border: none;
+    top: 0.5%;
+    right: 4%;
+  }
+
+  .waiterBell {
+    width: 39vw;
+    position: fixed;
+    z-index: 9999999999999999999999;
+    transform: translateY(-37vw);
+  }
+
+  .MessageArea {
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    margin-top: 17vw;
+    font-family: "Nunito", sans-serif;
+  }
+
+  .theMessage {
+    text-align: center;
+    font-family: inherit;
+    color: #000000;
+    font-weight: 700;
+    line-height: 6vw;
+    font-size: 4.4vw;
+  }
+
+  .theMessage2 {
+    text-align: center;
+    font-family: inherit;
+    color: #000000;
+    font-weight: 700;
+    line-height: 7vw;
+    font-size: 4.5vw;
+  }
+
+  .clockImg {
+    width: 39vw;
+    position: fixed;
+    z-index: 9999999999999999999999;
+    transform: translateY(-37vw);
+  }
+
+  .heartImg {
+    width: 39vw;
+    position: fixed;
+    z-index: 9999999999999999999999;
+    transform: translateY(-37vw);
+  }
+}

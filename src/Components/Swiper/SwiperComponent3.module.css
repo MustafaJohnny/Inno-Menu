@@ -1,0 +1,41 @@
+@media (max-width: 37.5em) {
+    .swiperEl {
+        width: 100%;
+        padding: 24.5vw 2.5vw 0 6vw;
+        z-index: 1;
+    }
+
+    .swiperSlide {
+        color: #FFFFFF;
+        width: 95%;
+        height: 40vw;
+        background-size: cover;
+        background-position: center;
+        font-family: "Merriweather", sans-serif;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        margin-right: 4vw;
+        box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+    }
+
+    .services {
+        color: #FFFFFF;
+    }
+
+    .packageArea {
+        width: 100%;
+    }
+
+    .packageName {
+        color: inherit;
+        font-size: 4.5vw;
+        padding: 4.5vw;
+        font-weight: 400;
+        width: 100%;
+        display: block;
+        backdrop-filter: blur(1px);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+}

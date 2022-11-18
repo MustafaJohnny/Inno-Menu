@@ -1,10 +1,10 @@
 import React from "react";
 import LoadingSpinner from "../UI-Components/LoadingSpinner";
-import { Route, Routes } from "react-router-dom";
-import { Suspense } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { controlActions } from "../Redux/ReduxStore";
-import { useEffect } from "react";
+import {Route, Routes} from "react-router-dom";
+import {Suspense} from "react";
+import {useSelector, useDispatch} from "react-redux";
+import {controlActions} from "../Redux/ReduxStore";
+import {useEffect} from "react";
 import BellComponent from "../UI-Components/BellComponent";
 import classes from "./All-Pages.module.css";
 
@@ -24,7 +24,7 @@ const Waiter_modal = React.lazy(() =>
 
 const All_Pages = () => {
   const dispatch = useDispatch();
-
+  
   const clearLocalStorge = () => {
     window.localStorage.clear();
     window.localStorage.removeItem("persist:root");
@@ -33,53 +33,55 @@ const All_Pages = () => {
     dispatch(controlActions.hideNavLang());
     dispatch(controlActions.getTotal());
   };
-
+  
   useEffect(() => {
     clearLocalStorge();
   }, []);
-
+  
   document.getElementsByTagName("META")[3].content = "";
-
+  
   const screenWidth = window.screen.width;
-
+  
   const screenMSG =
     screenWidth < 900
       ? "Пожалуйста, поверните ваш телефон"
       : "Пожалуйста воспользуйтесь мобильным устройством";
-
+  
   const showWaiter = useSelector((state) => state.controler.show_waiter);
   const waiterSoon = useSelector((state) => state.controler.waiter_soon);
   const showBell = useSelector((state) => state.controler.show_bell);
-
+  const desginNumber = useSelector((state) => state.controlerStyles.desginNumber)
+  const textColorStyle = desginNumber === 3 ? classes.breakpointMsg3 : classes.breakpointMsg;
+  
   return (
     <React.Fragment>
       <div className={classes.areaMsg}>
-        <h1 className={classes.breakpointMsg}>{screenMSG}</h1>
+        <h1 className={textColorStyle}>{screenMSG}</h1>
       </div>
       <div className={classes.mainContainer}>
-        <Suspense fallback={<LoadingSpinner />}>
-          {showWaiter && <Waiter_modal />}
-          {waiterSoon && <Clock_modal />}
-          {showBell && <BellComponent />}
+        <Suspense fallback={<LoadingSpinner/>}>
+          {showWaiter && <Waiter_modal/>}
+          {waiterSoon && <Clock_modal/>}
+          {showBell && <BellComponent/>}
           <Routes>
             <Route
               path="/menu/:domain/:NumOfTable/:lang"
-              element={<Home_page />}
+              element={<Home_page/>}
             />
-
+            
             <Route
               path="/menu/:domain/:NumOfTable/:lang/categories"
-              element={<Categories_page />}
+              element={<Categories_page/>}
             />
-
+            
             <Route
               path="/menu/:domain/:NumOfTable/:lang/items"
-              element={<Items_page />}
+              element={<Items_page/>}
             />
-
+            
             <Route
               path="/menu/:domain/:NumOfTable/:lang/cart"
-              element={<Cart_page />}
+              element={<Cart_page/>}
             />
           </Routes>
         </Suspense>

@@ -15,6 +15,7 @@ const initialState = {
   hide_items: false,
   show_bell: false,
   show_order_com: false,
+  show_order_ready: false,
   initial_slide: 0,
   first_carousel: 50,
   user_num_of_table: "",
@@ -32,7 +33,6 @@ const initialState = {
   owner_logo: "Logo",
   user_language: "EN",
   menu_currency: "$",
-  serverAPI: "inme.su",
   // Cart States //
   cart_items: [],
   cart_total_quantity: 0,
@@ -88,6 +88,10 @@ const controlSlice = createSlice({
 
     toggleHideItems(state, action) {
       state.hide_items = action.payload;
+    },
+
+    toggleOrderIsReady(state) {
+      state.show_order_ready = !state.show_order_ready;
     },
 
     // Data Handling Functions //
@@ -207,6 +211,14 @@ const controlSlice = createSlice({
 
     clearCart(state, action) {
       state.cart_items = action.payload;
+    },
+
+    clearEverything(state) {
+      state.cart_items = [];
+      state.selected_items = [];
+      state.categories_item = [];
+      state.cart_total_amount = 0;
+      state.cart_total_quantity = 0;
     },
   },
 });

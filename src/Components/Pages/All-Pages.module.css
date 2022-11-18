@@ -12,6 +12,12 @@
   font-size: 3vw;
 }
 
+.breakpointMsg3 {
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 3vw;
+}
+
 @media (max-width: 37.5em) {
   .areaMsg {
     visibility: hidden;

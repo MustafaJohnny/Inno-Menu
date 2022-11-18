@@ -1,0 +1,101 @@
+@media (max-width: 37.5em) {
+  .componentOrder {
+    bottom: -2%;
+    z-index: 10;
+    width: 100vw;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    background-color: #FFFFFF;
+    padding: 3vw 4.4vw 9.5vw 4.4vw;
+    justify-content: space-between;
+    box-shadow: 0 -10px 20px rgba(220, 220, 228, 0.3);
+    font-family: "Open Sans", sans-serif;
+  }
+
+  .totalArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5vw;
+  }
+
+  .total {
+    color: #929292;
+    font-weight: 400;
+    font-size: 4vw;
+  }
+
+  .price {
+    color: #000000;
+    font-weight: 600;
+    font-size: 4vw;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  .orderBtn {
+    border: none;
+    background-color: #272626;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    padding: 2vw 5vw;
+  }
+
+  .orderText {
+    color: #fff;
+    font-weight: 600;
+    font-size: 3.7vw;
+    text-transform: uppercase;
+    font-family: "Open Sans", sans-serif !important;
+  }
+
+  .basketIcon {
+    width: 7vw;
+    position: relative;
+  }
+
+  .orderAdded {
+    position: absolute;
+    right: 8%;
+    top: 18%;
+    color: #2d2d2d;
+    font-weight: 800;
+    font-size: 2.7vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    width: 3.5vw;
+    height: 3.5vw;
+    border-radius: 100%;
+  }
+
+  .bellElement {
+    background-color: #E7C61A;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 3vw;
+    width: 12.5vw;
+    border-radius: 100%;
+    position: fixed;
+    z-index: 15;
+    right: 13%;
+    bottom: 19%;
+    transform: translate(50%, 50%);
+  }
+
+  .bellBehind {
+    display: inline-block;
+    background: rgba(231, 198, 26, 0.4);
+    padding: 7.8vw;
+    z-index: 14;
+    border-radius: 100%;
+    position: fixed;
+    right: 13%;
+    bottom: 19%;
+    transform: translate(50%, 50%);
+  }
+}

@@ -41,7 +41,7 @@ const BasketComponent = () => {
         <button onClick={goToCart} type="button" className={mainStyle.orderBtn}>
           <span className={mainStyle.orderText}>Заказать</span>
           <img className={mainStyle.basketIcon} alt="icon" src={basketIcon} />
-          <span className={mainStyle.orderAdded}>{totalQuantity}</span>
+          <span className={`${mainStyle.orderAdded} ${mainStyle.positionOrder}`}>{totalQuantity}</span>
         </button>
       </div>
     </React.Fragment>

@@ -3,6 +3,7 @@ import Navigation from "../UI-Components/Navigation";
 import LangNavigation from "../UI-Components/LangNavigation";
 import SideNavigation from "../UI-Components/SideNavigation";
 import OrderComponent from "../UI-Components/OrderComponent";
+import OrderReadyModal from "../PopUp-Components/OrderReady";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
@@ -10,6 +11,10 @@ import { controlActions } from "../Redux/ReduxStore";
 
 const Cart = () => {
   const cart_items = useSelector((state) => state.controler.cart_items);
+
+  const showOrderReady = useSelector(
+    (state) => state.controler.show_order_ready
+  );
 
   useEffect(() => {
     dispatch(controlActions.toggleShowLayout(false));
@@ -29,12 +34,11 @@ const Cart = () => {
   const showLangNav = useSelector((state) => state.controler.show_lang_nav);
   const menuCurrency = useSelector((state) => state.controler.menu_currency);
   const showSideNav = useSelector((state) => state.controler.show_side_nav);
-  const serverAPI = useSelector((state) => state.controler.serverAPI);
   ///////////////////////////////////////////////////////////////////////////////
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
-  const URL = `http://${serverAPI}:8000/api/v1/client/fileimage/${params.domain}`;
+  const URL = `${process.env.REACT_APP_URL}/api/v1/client/fileimage/${params.domain}`;
 
   const navigateStepBack = () => {
     dispatch(controlActions.toggleShowLayout(true));
@@ -61,6 +65,7 @@ const Cart = () => {
 
   return (
     <React.Fragment>
+      {showOrderReady && <OrderReadyModal />}
       {showSideNav && <SideNavigation />}
       {showLangNav && <LangNavigation />}
       <section className={mainStyle.firstSection}>

@@ -24,7 +24,6 @@ const CategoriesPage = () => {
   const showLangNav = useSelector((state) => state.controler.show_lang_nav);
   const showSideNav = useSelector((state) => state.controler.show_side_nav);
   const showOrder = useSelector((state) => state.controler.show_order_com);
-  const serverAPI = useSelector((state) => state.controler.serverAPI);
   ////////////////////////////////////////////////////////////////////////////////
   const layoutState = useSelector((state) => state.controler.layout_oneFR);
   const desginNumber = useSelector(
@@ -50,7 +49,7 @@ const CategoriesPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
-  const URL = `http://${serverAPI}:8000/api/v1/client/fileimage/${params.domain}`;
+  const URL = `${process.env.REACT_APP_URL}/api/v1/client/fileimage/${params.domain}`;
   const allItems = categorieItem.categorymenu;
 
   const navigateStepBack = () => {
@@ -64,7 +63,7 @@ const CategoriesPage = () => {
 
     const getData = async () => {
       const request = await axios.get(
-        `http://${serverAPI}:8000/api/v1/client/CategoryWhisProduct/${categorieID}`
+        `${process.env.REACT_APP_URL}/api/v1/client/CategoryWhisProduct/${categorieID}`
       );
 
       if (mounted) {
@@ -73,7 +72,6 @@ const CategoriesPage = () => {
         );
 
         dispatch(controlActions.getSelectedItems(request.data));
-
         dispatch(controlActions.toggleRemoveArrow());
 
         dispatch(controlActions.toggleShowLayout(false));

@@ -6,11 +6,22 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "swiper/css/pagination";
+import "./Pagination.css";
 
 const SwiperComponent = () => {
   const mainStyle = useSelector((state) => state.controlerStyles.swiper_style);
-  const serverAPI = useSelector((state) => state.controler.serverAPI);
+
+  const restaurantsMenus = useSelector(
+    (state) => state.controler.restaurants_menus
+  );
+
+  const designNumber = useSelector(
+    (state) => state.controlerStyles.desginNumber
+  );
+
   const initialSlide = useSelector((state) => state.controler.initial_slide);
+
   ///////////////////////////////////////////////////////////////////////////////////
   const [activeCarousel, setActiveCarousel] = useState("");
   const firstCarousel = useSelector((state) => state.controler.first_carousel);
@@ -28,13 +39,13 @@ const SwiperComponent = () => {
     setTimeout(() => {
       const getData = async () => {
         const request = await axios.get(
-          `http://${serverAPI}:8000/api/v1/client/AllMenuListWithCategory/${activeID}`
+          `${process.env.REACT_APP_URL}/api/v1/client/AllMenuListWithCategory/${activeID}`
         );
 
         if (mounted) {
           dispatch(controlActions.getAllRestaurantsData(request.data));
 
-          // If we have only one restaurent, only one menu and only one category then we send a requst to get the items of that one category.
+          // If we have only one restaurent, only one menu and only one category then we send a requst to get the items of that one category instantly!..
           if (
             request.data.menu.length === 1 &&
             request.data.menu[0].categorymenu.length === 1
@@ -45,7 +56,7 @@ const SwiperComponent = () => {
 
             const getData = async () => {
               const request = await axios.get(
-                `http://${serverAPI}:8000/api/v1/client/CategoryWhisProduct/${lonelyCattgory}`
+                `${process.env.REACT_APP_URL}/api/v1/client/CategoryWhisProduct/${lonelyCattgory}`
               );
 
               if (mounted) {
@@ -77,7 +88,7 @@ const SwiperComponent = () => {
     return () => {
       mounted = false;
     };
-  }, [activeID]);
+  }, [activeID, initialSlide]);
 
   /////////////////////////////////////////////////////////////////////////////
   const ownerServices = useSelector((state) => state.controler.owner_service);
@@ -94,9 +105,12 @@ const SwiperComponent = () => {
     if (!event.slides[event.activeIndex].className.includes("services")) {
       dispatch(controlActions.getServiceItems([]));
       dispatch(controlActions.setInitialSlide(event.activeIndex));
-      // dispatch(controlActions.toggleShowLayout(true));
       dispatch(controlActions.toggleHideItems(true));
       setActiveCarousel(event.slides[event.activeIndex].id);
+
+      if (restaurantsMenus.length > 1) {
+        dispatch(controlActions.toggleShowLayout(true));
+      }
     }
     ///////////////////////////////////////////////////////////////////////////
     if (event.slides[event.activeIndex].className.includes("services")) {
@@ -106,7 +120,7 @@ const SwiperComponent = () => {
 
       const getData = async () => {
         const request = await axios.get(
-          `http://${serverAPI}:8000/api/v1/client/uslugiList/${servicesID}`
+          `${process.env.REACT_APP_URL}/api/v1/client/uslugiList/${servicesID}`
         );
 
         if (mounted) {
@@ -123,16 +137,23 @@ const SwiperComponent = () => {
 
   ////////////////////////////////////////////////////////////////////////////////
   const params = useParams();
-  const URL = `http://${serverAPI}:8000/api/v1/client/fileimage/${params.domain}`;
+  const URL = `${process.env.REACT_APP_URL}/api/v1/client/fileimage/${params.domain}`;
   ///////////////////////////////////////////////////////////////////////////////
 
   return (
     <React.Fragment>
       <Swiper
+        pagination={
+          designNumber === 4 && {
+            clickable: true,
+            renderBullet: function (index, className) {
+              return '<span class="' + className + '"></span>';
+            },
+          }
+        }
         onSlideChange={getActiveCarousel}
         watchSlidesProgress={true}
         initialSlide={initialSlide}
-        // effect={"coverflow"}
         grabCursor={true}
         centeredSlides={true}
         slidesPerView={"auto"}

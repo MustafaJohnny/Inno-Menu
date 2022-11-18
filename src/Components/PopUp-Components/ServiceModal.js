@@ -18,38 +18,38 @@ const ServiceModal = () => {
   );
 
   const serviceImg = useSelector((state) => state.controlerStyles.service_img);
-  const serverAPI = useSelector((state) => state.controler.serverAPI);
   const dispatch = useDispatch();
 
   const closeServiceModal = () => {
     dispatch(controlActions.toggleShowService());
   };
-
+  
   const orderServiceSure = () => {
     axios
-      .post(`http://${serverAPI}/api/v1/order/usluga_order`, "", {
-        params: {
-          uslugi_id: clickedServiceID,
-          table_uuid: numberOfTable,
-        },
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          dispatch(controlActions.toggleShowService());
-          dispatch(controlActions.toggleSoonService());
-        }
-      });
+    .post(`${process.env.REACT_APP_URL}/api/ord_serv/usluga_order`, "", {
+      params: {
+        uslugi_id: clickedServiceID,
+        table_uuid: numberOfTable,
+      },
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        dispatch(controlActions.toggleShowService());
+        dispatch(controlActions.toggleSoonService());
+      }
+    });
   };
-
+  
+  
   return (
     <React.Fragment>
       <Overlay />
-      <div className={`${mainStyle.modal} ${mainStyle.modal2}`}>
+      <div className={`${mainStyle.modal} ${mainStyle.modal2} ${mainStyle.modal5}`}>
         <div className={mainStyle.MessageArea}>
           <p className={mainStyle.theMessage2}>Вы действительно хотите</p>
           <p className={mainStyle.theMessage2}>заказать эту услугу ?</p>
         </div>
-        <img alt="bell-icon" src={serviceImg} className={mainStyle.clockImg} />
+        {serviceImg && <img alt="bell-icon" src={serviceImg} className={mainStyle.clockImg} />}
         <div className={mainStyle.buttonsArea}>
           <button
             onClick={orderServiceSure}

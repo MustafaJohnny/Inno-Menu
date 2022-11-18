@@ -68,8 +68,8 @@
     font-weight: 600;
     font-size: 3.8vw;
   }
-  /** Side nav style **/
 
+  /** Side nav style **/
   /** Lang nav style **/
   .langNav {
     gap: 5.6vw;
@@ -91,7 +91,6 @@
   }
 
   /** Main Navigation **/
-
   .mainHeading {
     position: fixed;
     top: 0%;
