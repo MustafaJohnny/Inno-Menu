@@ -16,28 +16,28 @@ const HomePage = () => {
   const restaurantsMenus = useSelector(
     (state) => state.controler.restaurants_menus
   );
-
+  
   let showMenus = restaurantsMenus;
-
+  
   if (restaurantsMenus.length === 1)
     showMenus = restaurantsMenus[0].categorymenu;
-
+  
   if (showMenus.length === 1) showMenus = [];
-
+  
   // We do this logic when we show the items of lonely category only.
   // We do this logic when we show the service carosel only.
   const selectedItems = useSelector((state) => state.controler.selected_items);
   const serviceItems = useSelector((state) => state.controler.service_items);
-
+  
   const [hideMenus, setHideMenus] = useState(true);
-
+  
   useEffect(() => {
     if (selectedItems.length !== 0) setHideMenus(false);
     if (selectedItems.length === 0) setHideMenus(true);
     if (serviceItems.length !== 0) setHideMenus(false);
     if (serviceItems.length === 0) setHideMenus(true);
   }, [serviceItems, selectedItems]);
-
+  
   const mainStyle = useSelector((state) => state.controlerStyles.pages_style);
   const serviceOrderBtn = useSelector((state)=> state.controlerStyles.serviceOrderBtn);
   const titleItemBtn = useSelector((state)=> state.controlerStyles.titleItemBtn);
@@ -53,61 +53,61 @@ const HomePage = () => {
     (state) => state.controlerStyles.desginNumber
   );
   ////////////////////////////////////////////////////////////////////////////////
-
+  
   const layoutActiveClass = layoutState
     ? mainStyle.menuContainer1FR
     : mainStyle.menuContainer2FR;
-
+  
   const nameActiveClass = layoutState
     ? mainStyle.elementName1FR
     : mainStyle.elementName2FR;
-
+  
   const menuElActiveClass = layoutState
     ? mainStyle.menuElement1FR
     : mainStyle.menuElement2FR;
-
+  
   // Very important thing we will get back her later..
   const neededStyle =
     desginNumber === 1 ? mainStyle.menuElement : menuElActiveClass;
-
+  
   const dispatch = useDispatch();
-
+  
   const navigate = useNavigate();
-
+  
   const params = useParams();
-
+  
   const URL = `${process.env.REACT_APP_URL}/api/v1/client/fileimage/${params.domain}`;
-
+  
   ////////////////////////////////////////////////////////////////////////////////
   const getClickedMenuOrItem = (event) => {
     const menuOrItem = showMenus[event.target.id].categorymenu ? true : false;
-
+    
     // When there is a menu with different food categories we do this..
     if (menuOrItem) {
       //////////////////////////////////////////////////////////////////
-
+      
       // When one of the menu's got only one category, then we just show to the user what's inside this category..(item)
       if (showMenus[event.target.id].categorymenu.length === 1) {
         const onlyItemID = showMenus[event.target.id].categorymenu[0].id;
-
+        
         dispatch(
           controlActions.getItemsHeading(showMenus[event.target.id].name)
         );
-
+        
         let mounted = true;
-
+        
         const getData = async () => {
           const request = await axios.get(
             `${process.env.REACT_APP_URL}/api/v1/client/CategoryWhisProduct/${onlyItemID}`
           );
-
+          
           if (mounted) {
             dispatch(controlActions.getSelectedItems(request.data));
-
+            
             dispatch(controlActions.toggleRemoveArrow());
-
+            
             dispatch(controlActions.toggleShowLayout(false));
-
+            
             navigate(
               `/menu/${params.domain}/${params.NumOfTable}/${params.lang}/items`,
               {
@@ -122,7 +122,7 @@ const HomePage = () => {
       // When there is a menu with some categories (more then one) we navigate to categories page and show them to the user.
       if (showMenus[event.target.id].categorymenu.length !== 1) {
         dispatch(controlActions.getCategoriesItem(showMenus[event.target.id]));
-
+        
         navigate(
           `/menu/${params.domain}/${params.NumOfTable}/${params.lang}/categories`,
           {
@@ -132,29 +132,29 @@ const HomePage = () => {
       }
     }
     //////////////////////////////////////////////////////////////////////////////////////
-
+    
     // When there is only one menu without any categories,then we just show to the user what's inside that menu....
     if (!menuOrItem) {
       const categorieID = showMenus[event.target.id].id;
-
+      
       let mounted = true;
-
+      
       const getData = async () => {
         const request = await axios.get(
           `${process.env.REACT_APP_URL}/api/v1/client/CategoryWhisProduct/${categorieID}`
         );
-
+        
         if (mounted) {
           dispatch(
             controlActions.getItemsHeading(showMenus[event.target.id].name)
           );
-
+          
           dispatch(controlActions.getSelectedItems(request.data));
-
+          
           dispatch(controlActions.toggleRemoveArrow());
-
+          
           dispatch(controlActions.toggleShowLayout(false));
-
+          
           navigate(
             `/menu/${params.domain}/${params.NumOfTable}/${params.lang}/items`,
             {
@@ -163,23 +163,23 @@ const HomePage = () => {
           );
         }
       };
-
+      
       getData();
     }
   };
-
+  
   // Order Service function
   const orderServiceNow = (serviceID) => {
     dispatch(controlActions.toggleShowService());
     dispatch(controlActions.setClickedServiceID(serviceID));
   };
-
+  
   // Adding to cat handling function
   const handleAddToCart = (meal) => {
     dispatch(controlActions.addToCart(meal));
     dispatch(controlActions.getTotal());
   };
-
+  
   return (
     <React.Fragment>
       {showSideNav && <SideNavigation />}
@@ -224,7 +224,7 @@ const HomePage = () => {
               </div>
             ))}
         </div>
-
+        
         <div className={mainStyle.menuContainer1FR}>
           {serviceItems.map((ele, index) => (
             <div key={ele.id} id={index} className={mainStyle.serviceElement}>
@@ -252,7 +252,7 @@ const HomePage = () => {
             </div>
           ))}
         </div>
-
+        
         {hideItems && (
           <div className={mainStyle.squareContainer ? mainStyle.squareContainer : mainStyle.itemsContainer}>
             {selectedItems.map((ele) => (

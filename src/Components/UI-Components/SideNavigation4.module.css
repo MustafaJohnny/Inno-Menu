@@ -218,6 +218,9 @@
 
   .layoutArea {
     display: none;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
   }
 
   .actionArea {

@@ -11,64 +11,64 @@ import "./Pagination.css";
 
 const SwiperComponent = () => {
   const mainStyle = useSelector((state) => state.controlerStyles.swiper_style);
-
+  
   const restaurantsMenus = useSelector(
     (state) => state.controler.restaurants_menus
   );
-
+  
   const designNumber = useSelector(
     (state) => state.controlerStyles.desginNumber
   );
-
+  
   const initialSlide = useSelector((state) => state.controler.initial_slide);
-
+  
   ///////////////////////////////////////////////////////////////////////////////////
   const [activeCarousel, setActiveCarousel] = useState("");
   const firstCarousel = useSelector((state) => state.controler.first_carousel);
   const activeID = !activeCarousel ? firstCarousel.toString() : activeCarousel;
   //////////////////////////////////////////////////////////////////////////////////
-
+  
   // Main get requst to server to recevie all menus depending on the showing ID.
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(controlActions.getSelectedItems([]));
-
+    
     let mounted = true;
-
+    
     setTimeout(() => {
       const getData = async () => {
         const request = await axios.get(
           `${process.env.REACT_APP_URL}/api/v1/client/AllMenuListWithCategory/${activeID}`
         );
-
+        
         if (mounted) {
           dispatch(controlActions.getAllRestaurantsData(request.data));
-
+          
           // If we have only one restaurent, only one menu and only one category then we send a requst to get the items of that one category instantly!..
           if (
             request.data.menu.length === 1 &&
             request.data.menu[0].categorymenu.length === 1
           ) {
             const lonelyCattgory = request.data.menu[0].categorymenu[0].id;
-
+            
             let mounted = true;
-
+            
             const getData = async () => {
               const request = await axios.get(
                 `${process.env.REACT_APP_URL}/api/v1/client/CategoryWhisProduct/${lonelyCattgory}`
               );
-
+              
               if (mounted) {
                 dispatch(controlActions.getSelectedItems(request.data));
                 dispatch(controlActions.toggleHideItems(true));
                 dispatch(controlActions.toggleShowLayout(false));
               }
             };
-
+            
             getData();
           }
-
+          
           // Some doubts about this logic.
           if (
             request.data.menu.length !== 1 &&
@@ -81,15 +81,15 @@ const SwiperComponent = () => {
           // Some doubts about this logic.
         }
       };
-
+      
       getData();
     }, 600);
-
+    
     return () => {
       mounted = false;
     };
   }, [activeID, initialSlide]);
-
+  
   /////////////////////////////////////////////////////////////////////////////
   const ownerServices = useSelector((state) => state.controler.owner_service);
   const ownerRestaurants = useSelector(
@@ -99,7 +99,7 @@ const SwiperComponent = () => {
   const packageLength = ownerRestaurants.length + ownerServices.length;
   const carouselState = packageLength <= 1 ? false : true;
   /////////////////////////////////////////////////////////////////////////
-
+  
   /////////////////////////////////////////////////////////////////
   const getActiveCarousel = (event) => {
     if (!event.slides[event.activeIndex].className.includes("services")) {
@@ -107,7 +107,7 @@ const SwiperComponent = () => {
       dispatch(controlActions.setInitialSlide(event.activeIndex));
       dispatch(controlActions.toggleHideItems(true));
       setActiveCarousel(event.slides[event.activeIndex].id);
-
+      
       if (restaurantsMenus.length > 1) {
         dispatch(controlActions.toggleShowLayout(true));
       }
@@ -115,31 +115,31 @@ const SwiperComponent = () => {
     ///////////////////////////////////////////////////////////////////////////
     if (event.slides[event.activeIndex].className.includes("services")) {
       const servicesID = event.slides[event.activeIndex].id;
-
+      
       let mounted = true;
-
+      
       const getData = async () => {
         const request = await axios.get(
           `${process.env.REACT_APP_URL}/api/v1/client/uslugiList/${servicesID}`
         );
-
+        
         if (mounted) {
           dispatch(controlActions.getServiceItems(request.data));
           dispatch(controlActions.toggleShowLayout(false));
           dispatch(controlActions.toggleHideItems(false));
         }
       };
-
+      
       getData();
     }
   };
   ///////////////////////////////////////////////////////////////
-
+  
   ////////////////////////////////////////////////////////////////////////////////
   const params = useParams();
   const URL = `${process.env.REACT_APP_URL}/api/v1/client/fileimage/${params.domain}`;
   ///////////////////////////////////////////////////////////////////////////////
-
+  
   return (
     <React.Fragment>
       <Swiper
@@ -180,7 +180,7 @@ const SwiperComponent = () => {
               </div>
             </SwiperSlide>
           ))}
-
+        
         {carouselState &&
           ownerServices.map((ele) => (
             <SwiperSlide

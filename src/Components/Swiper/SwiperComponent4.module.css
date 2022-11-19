@@ -31,3 +31,17 @@
     text-transform: uppercase;
   }
 }
+
+:global(.swiper-pagination-bullet) {
+  width: 8px;
+  height: 8px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+  opacity: 1;
+  background: #651112;
+}
+
+:global(.swiper-pagination-bullet-active) {
+  background-color: #F9CB99 !important;
+}

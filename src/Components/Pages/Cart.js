@@ -90,7 +90,7 @@ const Cart = () => {
             className={mainStyle.basketEmptyImg}
             alt="basket"
           />
-          <span className={mainStyle.emptyHeading}>ваша корзина пустая!</span>
+          <span className={mainStyle.emptyHeading}>Ваша корзина пустая!</span>
           <button
             className={`${mainStyle.cartBackBtn} ${mainStyle.addCartBtn}`}
             onClick={backToMainMenu}

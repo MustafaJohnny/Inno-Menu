@@ -42,7 +42,7 @@ const WaiterModal = () => {
           <p className={mainStyle.theMessage2}>Вы действительно хотите</p>
           <p className={mainStyle.theMessage2}>позвать официанта?</p>
         </div>
-          <img alt="bell-icon" src={waiterImg} className={mainStyle.waiterBell}/>
+        {waiterImg && <img alt="bell-icon" src={waiterImg} className={mainStyle.waiterBell}/>}
         <div className={mainStyle.buttonsArea}>
           <button
             onClick={callWaiterHideModal}
