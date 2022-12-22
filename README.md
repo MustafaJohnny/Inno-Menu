@@ -5,13 +5,6 @@
 Inno Menu Mobile has one primary objective - that is to upsell your food by presenting it in the best way possible, having the most advanced QR Menu campaign features, and marketing integrations. It's simplistic easy to use interface creates a fluid experience that keeps your guests engaged and ordering more!
 
 
-## Links
-
-- Notes that the width of the screen should be less than 512 px snice this app is made for mobile.
-
-* Live Site URL: 
-
-
 ## Built with
 
 - [React Router](https://reactrouter.com/en/main)
