@@ -9,7 +9,7 @@ Inno Menu Mobile has one primary objective - that is to upsell your food by pres
 
 - Notes that the width of the screen should be less than 512 px snice this app is made for mobile.
 
-* Live Site URL: http://inme.su/menu/burger/a34649/EN
+* Live Site URL: 
 
 
 ## Built with
